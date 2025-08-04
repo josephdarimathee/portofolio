@@ -1,0 +1,68 @@
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes gradientMove {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+.fade-in-up {
+    animation: fadeInUp 1s cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+
+.animated-gradient-text {
+    background: linear-gradient(90deg, #a78bfa, #f472b6, #60a5fa, #a78bfa);
+    background-size: 200% 200%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: gradientMove 3s linear infinite alternate;
+}
+
+.card-anim {
+    opacity: 0;
+    animation: fadeInUp 0.7s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+.card-anim:nth-child(n) {
+    animation-delay: 0.2s;
+}
+
+.img-anim {
+    transition: transform 0.5s, filter 0.5s;
+}
+
+.img-anim:hover {
+    transform: scale(1.07) rotate(-2deg);
+    filter: brightness(1.1);
+}
+
+.card-title-anim,
+.card-desc-anim,
+.link-anim {
+    transition: color 0.4s, text-shadow 0.4s;
+}
+
+.card-title-anim:hover,
+.link-anim:hover {
+    color: #7042f8;
+    text-shadow: 0 2px 8px #7042f8aa;
+}
+
+.card-desc-anim:hover {
+    color: #fff;
+}
