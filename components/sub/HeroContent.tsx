@@ -44,7 +44,7 @@ const HeroContent = () => {
                   {" "}
                   le mellieur{" "}
                 </span>
-                l'experience de mes projet
+                lexperience de mes projet
               </span>
             </motion.div>
 
@@ -52,7 +52,7 @@ const HeroContent = () => {
               variants={slideInFromLeft(0.8)}
               className="text-base sm:text-lg text-gray-400 my-5 max-w-[600px]"
             >
-              Je suis ingénieur logiciel Full Stack avec une expérience en développement de sites web, d'applications mobiles et de logiciels. Découvrez mes projets et mes compétences.
+              Je suis ingénieur logiciel Full Stack avec une expérience en développement de sites web, dapplications mobiles et de logiciels. Découvrez mes projets et mes compétences.
             </motion.p>
             <motion.a
               variants={slideInFromLeft(1)}
