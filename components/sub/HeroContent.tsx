@@ -52,7 +52,7 @@ const HeroContent = () => {
               variants={slideInFromLeft(0.8)}
               className="text-base sm:text-lg text-gray-400 my-5 max-w-[600px]"
             >
-              Je suis ingénieur logiciel Full Stack avec une expérience en développement de sites web, d applications mobiles et de logiciels. Découvrez mes projets et mes compétences.
+              Je suis ingénieur logiciel Full Stack avec une expérience en développement de sites web, dapplications mobiles et de logiciels. Découvrez mes projets et mes compétences.
             </motion.p>
             <motion.a
               variants={slideInFromLeft(1)}
@@ -68,14 +68,15 @@ const HeroContent = () => {
               className="relative flex justify-center items-center"
             >
               {/* Bordure colorée animée autour de l'image */}
-              <span className="absolute w-[60vw] h-[60vw] max-w-[500px] max-h-[500px] min-w-[150px] min-h-[150px] rounded-full bg-gradient-to-r from-purple-500 via-cyan-400 to-pink-500 animate-spin-slow z-0"></span>
-              <span className="absolute w-[60vw] h-[60vw] max-w-[500px] max-h-[500px] min-w-[150px] min-h-[150px] rounded-full bg-gradient-to-r from-purple-500 via-cyan-400 to-pink-500 opacity-40 blur-xl animate-pulse z-0"></span>
+              <span className="absolute w-[40vw] h-[40vw] max-w-[320px] max-h-[320px] min-w-[120px] min-h-[120px] rounded-full bg-gradient-to-r from-purple-500 via-cyan-400 to-pink-500 animate-spin-slow z-0"></span>
+              <span className="absolute w-[40vw] h-[40vw] max-w-[320px] max-h-[320px] min-w-[120px] min-h-[120px] rounded-full bg-gradient-to-r from-purple-500 via-cyan-400 to-pink-500 opacity-40 blur-xl animate-pulse z-0"></span>
               <Image
                 src="/PHprofil.jpg"
                 alt="work icons"
-                width={500}
-                height={500}
-                className="relative z-10 w-[50vw] h-[50vw] max-w-[400px] max-h-[400px] min-w-[120px] min-h-[120px] rounded-full object-cover border-4 border-white"
+                width={320}
+                height={320}
+                className="relative z-10 w-[35vw] h-[35vw] max-w-[280px] max-h-[280px] min-w-[100px] min-h-[100px] rounded-full object-cover border-4 border-white"
+                priority
               />
             </motion.div>
           </div>
