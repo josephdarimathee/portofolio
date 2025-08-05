@@ -1,4 +1,4 @@
-import Image from "next/image";
+
 
 import Encryption from "@/components/main/Encryption";
 import Hero from "@/components/main/Hero";

@@ -80,7 +80,7 @@ export default function Allprojet() {
             {/* Section Jeux */}
             <div className="mt-16" id="games-section">
                 <h2 className="text-3xl font-bold mb-8 text-center text-green-400">Jeux</h2>
-                <p className="text-center text-gray-300 mb-8 max-w-2xl mx-auto">Découvrez une sélection de jeux interactifs pour vous divertir et tester vos compétences. Cliquez sur "Jouer le jeu" pour commencer une partie !</p>
+                <p className="text-center text-gray-300 mb-8 max-w-2xl mx-auto">Découvrez une sélection de jeux interactifs pour vous divertir et tester vos compétences. Cliquez sur Jouer le jeu pour commencer une partie !</p>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     {[
                         {
@@ -139,7 +139,7 @@ export default function Allprojet() {
             {/* Section Applications Mobiles */}
             <div className="mt-16" id="mobile-apps-section">
                 <h2 className="text-3xl font-bold mb-8 text-center text-blue-400">Applications Mobiles</h2>
-                <p className="text-center text-gray-300 mb-8 max-w-2xl mx-auto">Découvrez mes applications mobiles développées avec Flutter et React Native. Téléchargez-les pour profiter d'une expérience mobile moderne et performante !</p>
+                <p className="text-center text-gray-300 mb-8 max-w-2xl mx-auto">Découvrez mes applications mobiles développées avec Flutter et React Native. Téléchargez-les pour profiter dune expérience mobile moderne et performante !</p>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     {[
                         {
@@ -190,7 +190,7 @@ export default function Allprojet() {
                             <h3 className="text-xl font-semibold text-blue-300 mb-2">{app.titre}</h3>
                             <p className="text-gray-200 mb-2 text-center">{app.description}</p>
                             <p className="text-xs text-gray-400 mb-4">{app.info}</p>
-                            <a href={app.lien} className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded font-bold transition">Télécharger l'application</a>
+                            <a href={app.lien} className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded font-bold transition">Télécharger lapplication</a>
                         </div>
                     ))}
                 </div>
