@@ -86,28 +86,28 @@ export default function Allprojet() {
                         {
                             titre: "Jeu du Serpent",
                             description: "Contrôlez le serpent et mangez un maximum de pommes sans toucher les murs.",
-                            image: "/game_snake.png",
+                            image: "/serpent.jpg",
                             info: "Score, rapidité, réflexes",
                             lien: "#"
                         },
                         {
                             titre: "Morpion (Tic-Tac-Toe)",
                             description: "Affrontez un ami ou l'ordinateur dans ce classique du jeu de réflexion.",
-                            image: "/game_tictactoe.png",
+                            image: "/morpion.jpg",
                             info: "2 joueurs, stratégie",
                             lien: "#"
                         },
                         {
                             titre: "Quiz Culture G",
                             description: "Testez vos connaissances générales avec des questions variées.",
-                            image: "/game_quiz.png",
+                            image: "/quiz.png",
                             info: "Solo, QCM, score",
                             lien: "#"
                         },
                         {
                             titre: "Memory",
                             description: "Retrouvez les paires de cartes identiques le plus vite possible.",
-                            image: "/game_memory.png",
+                            image: "/memory.jpg",
                             info: "Mémoire, rapidité",
                             lien: "#"
                         },
