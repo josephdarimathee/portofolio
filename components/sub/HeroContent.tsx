@@ -71,7 +71,7 @@ const HeroContent = () => {
               <span className="absolute w-[40vw] h-[40vw] max-w-[320px] max-h-[320px] min-w-[120px] min-h-[120px] rounded-full bg-gradient-to-r from-purple-500 via-cyan-400 to-pink-500 animate-spin-slow z-0"></span>
               <span className="absolute w-[40vw] h-[40vw] max-w-[320px] max-h-[320px] min-w-[120px] min-h-[120px] rounded-full bg-gradient-to-r from-purple-500 via-cyan-400 to-pink-500 opacity-40 blur-xl animate-pulse z-0"></span>
               <Image
-                src="/PHprofil.jpg"
+                src="/statut.jpg"
                 alt="work icons"
                 width={320}
                 height={320}
