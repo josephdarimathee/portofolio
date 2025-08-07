@@ -124,6 +124,7 @@ export default function Allprojet() {
                             image: "/casse_brique.jpg",
                             info: "Adresse, arcade",
                             lien: "#"
+                            
                         }
                     ].map((jeu, idx) => (
                         <div key={idx} className="bg-[#13231a] rounded-lg shadow-lg p-4 flex flex-col items-center">
