@@ -100,7 +100,7 @@ export default function Allprojet() {
                         {
                             titre: "Quiz Culture G",
                             description: "Testez vos connaissances générales avec des questions variées.",
-                            image: "/quiz.png",
+                            image: "/quiz_culture.jpg",
                             info: "Solo, QCM, score",
                             lien: "#"
                         },
@@ -114,14 +114,14 @@ export default function Allprojet() {
                         {
                             titre: "2048",
                             description: "Fusionnez les tuiles pour atteindre le score 2048 !",
-                            image: "/game_2048.png",
+                            image: "/2048tuiles.jpg",
                             info: "Réflexion, logique",
                             lien: "#"
                         },
                         {
                             titre: "Casse-briques",
                             description: "Détruisez toutes les briques avec la balle sans la laisser tomber.",
-                            image: "/game_breakout.png",
+                            image: "/casse_brique.jpg",
                             info: "Adresse, arcade",
                             lien: "#"
                         }
