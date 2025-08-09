@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { Socials } from "@/constants";
 import Image from "next/image";
+import "./navbar-anim.css";
 
 import React, { useState } from "react";
 
@@ -33,15 +34,13 @@ const Navbar = () => {
 
         <div className="w-[400px] h-full flex flex-row items-center justify-between md:mr-20">
           <div className="flex items-center hidden md:flex justify-between w-full h-auto border border-[#7042f861] bg-[#0300145e] mr-[15px] px-[20px] py-[10px] rounded-full text-gray-200">
-            <Link rel="stylesheet" href="/" className="cursor-pointer" >Accuiel</Link>
-            <a href="#about-me" className="cursor-pointer">
+            <Link rel="stylesheet" href="/" className="cursor-pointer nav-anim" >Accuiel</Link>
+            <a href="#about-me" className="cursor-pointer nav-anim">
               Apropos
             </a>
-            <Link rel="stylesheet" href="/skill" className="cursor-pointer" > Competence</Link>
-
-
-            <Link rel="stylesheet" href="/projets" className="cursor-pointer" >Project</Link>
-
+            <Link rel="stylesheet" href="/skill" className="cursor-pointer nav-anim" > Competence</Link>
+            <Link rel="stylesheet" href="/projets" className="cursor-pointer nav-anim" >Project</Link>
+            <Link rel="stylesheet" href="/service" className="cursor-pointer nav-anim" >Service</Link>
           </div>
           {/* Menu responsive avec useState */}
           <button
@@ -73,12 +72,13 @@ const Navbar = () => {
       {menuOpen && (
         <div className="absolute top-[65px] left-0 w-full md:hidden z-50 bg-[#0300145e] backdrop-blur-md px-8 py-4">
           <div className="flex flex-col items-start gap-2 mb-4">
-            <Link rel="stylesheet" href="/" className="cursor-pointer" >Accuiel</Link>
-            <a href="#about-me" className="cursor-pointer text-gray-200" onClick={() => setMenuOpen(false)}>
+            <Link rel="stylesheet" href="/" className="cursor-pointer nav-anim" >Accuiel</Link>
+            <a href="#about-me" className="cursor-pointer nav-anim text-gray-200" onClick={() => setMenuOpen(false)}>
               Apropos moi
             </a>
-            <Link rel="stylesheet" href="/skill" className="cursor-pointer" > Competence</Link>
-            <Link rel="stylesheet" href="/projets" className="cursor-pointer" >Project</Link>
+            <Link rel="stylesheet" href="/skill" className="cursor-pointer nav-anim" > Competence</Link>
+            <Link rel="stylesheet" href="/projets" className="cursor-pointer nav-anim" >Project</Link>
+            <Link rel="stylesheet" href="/service" className="cursor-pointer nav-anim" >service</Link>
           </div>
           <div className="flex flex-row gap-3 justify-center w-full">
             {Socials.map((social) => (
