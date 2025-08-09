@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState, useRef, Suspense } from "react";
+import LightningFramer from "./LightningFramer";
+import BubbleFramer from "./BubbleFramer";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Points, PointMaterial } from "@react-three/drei";
 // @ts-expect-error pour avertir
@@ -49,12 +51,13 @@ const StarBackground = (props: StarBackgroundProps) => {
 
 const StarsCanvas = () => (
   <div className="w-full h-auto fixed inset-0 z-[20]">
-    <Canvas
-      camera={{ position: [0, 0, 1] }}>
+    <Canvas camera={{ position: [0, 0, 1] }}>
       <Suspense fallback={null}>
         <StarBackground />
       </Suspense>
     </Canvas>
+    <BubbleFramer />
+    <LightningFramer />
   </div>
 )
 
