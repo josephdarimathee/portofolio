@@ -33,9 +33,7 @@ const Navbar = () => {
         <div className="w-[400px] h-full flex flex-row items-center justify-between md:mr-20">
           <div className="flex items-center hidden md:flex justify-between min-w-[500px] w-full h-auto border border-[#7042f861] bg-[#0300145e] mr-[15px] px-[32px] py-[10px] rounded-full text-gray-200" id="nav-links">
             <Link rel="stylesheet" href="/" className="cursor-pointer nav-anim" >Accuiel</Link>
-            <a href="#about-me" className="cursor-pointer nav-anim">
-              Apropos
-            </a>
+            <Link rel="stylesheet" href="/about" className="cursor-pointer nav-anim" > Apropos</Link>
             <Link rel="stylesheet" href="/skill" className="cursor-pointer nav-anim" > Competence</Link>
             <Link rel="stylesheet" href="/projets" className="cursor-pointer nav-anim" >Project</Link>
             <Link rel="stylesheet" href="/service" className="cursor-pointer nav-anim" >Service</Link>

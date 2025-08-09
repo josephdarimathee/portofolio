@@ -18,33 +18,33 @@ const Footer = () => {
 
                     <div className="min-w-[200px] h-auto flex flex-col items-center justify-start">
                         <div className="font-bold text-[16px]">Community</div>
-                        <p className="flex flex-row items-center my-[15px] cursor-pointer">
+                        <a href="https://www.youtube.com/@votre_chaine" target="_blank" rel="noopener noreferrer" className="flex flex-row items-center my-[15px] cursor-pointer hover:text-[#ff0000] transition-colors">
                             <FaYoutube />
                             <span className="text-[15px] ml-[6px]">Youtube</span>
-                        </p>
-                        <p className="flex flex-row items-center my-[15px] cursor-pointer">
+                        </a>
+                        <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="flex flex-row items-center my-[15px] cursor-pointer hover:text-[#7042f8] transition-colors">
                             <RxGithubLogo />
                             <span className="text-[15px] ml-[6px]">Github</span>
-                        </p>
-                        <p className="flex flex-row items-center my-[15px] cursor-pointer">
+                        </a>
+                        <a href="https://discord.com/invite/votre_invite" target="_blank" rel="noopener noreferrer" className="flex flex-row items-center my-[15px] cursor-pointer hover:text-[#5865f2] transition-colors">
                             <RxDiscordLogo />
                             <span className="text-[15px] ml-[6px]">Discord</span>
-                        </p>
+                        </a>
                     </div>
                     <div className="min-w-[200px] h-auto flex flex-col items-center justify-start">
                         <div className="font-bold text-[16px]">Social Media</div>
-                        <p className="flex flex-row items-center my-[15px] cursor-pointer">
+                        <a href="https://instagram.com/votre_instagram" target="_blank" rel="noopener noreferrer" className="flex flex-row items-center my-[15px] cursor-pointer hover:text-[#e1306c] transition-colors">
                             <RxInstagramLogo />
                             <span className="text-[15px] ml-[6px]">Instagram</span>
-                        </p>
-                        <p className="flex flex-row items-center my-[15px] cursor-pointer">
+                        </a>
+                        <a href="https://twitter.com/votre_twitter" target="_blank" rel="noopener noreferrer" className="flex flex-row items-center my-[15px] cursor-pointer hover:text-[#1da1f2] transition-colors">
                             <RxTwitterLogo />
                             <span className="text-[15px] ml-[6px]">Twitter</span>
-                        </p>
-                        <p className="flex flex-row items-center my-[15px] cursor-pointer">
+                        </a>
+                        <a href="https://linkedin.com/in/votre_linkedin" target="_blank" rel="noopener noreferrer" className="flex flex-row items-center my-[15px] cursor-pointer hover:text-[#0077b5] transition-colors">
                             <RxLinkedinLogo />
                             <span className="text-[15px] ml-[6px]">Linkedin</span>
-                        </p>
+                        </a>
                     </div>
                     <div className="min-w-[200px] h-auto flex flex-col items-center justify-start">
                         <div className="font-bold text-[16px]">About</div>
@@ -64,7 +64,7 @@ const Footer = () => {
                 </div>
 
                 <div className="mb-[20px] text-[15px] text-center">
-                    &copy; WebChain Dev 2023 Inc. All rights reserved
+                    &copy; WebChain Dev 2025 Inc. All rights reserved
                 </div>
             </div>
         </div>

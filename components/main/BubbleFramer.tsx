@@ -21,6 +21,7 @@ const BubbleFramer: React.FC = () => {
         color: string;
         duration: number;
         delay: number;
+        exploded?: boolean;
     }[]>([]);
 
     useEffect(() => {
@@ -51,6 +52,19 @@ const BubbleFramer: React.FC = () => {
         }
     }, [bubbles]);
 
+    // Fonction pour faire exploser une bulle
+    const handleBubbleClick = (id: number) => {
+        setBubbles((prev) =>
+            prev.map((bubble) =>
+                bubble.id === id ? { ...bubble, exploded: true } : bubble
+            )
+        );
+        // Supprimer la bulle après l'animation d'explosion
+        setTimeout(() => {
+            setBubbles((prev) => prev.filter((bubble) => bubble.id !== id));
+        }, 600);
+    };
+
     return (
         <div className="pointer-events-none fixed inset-0 z-[25]">
             <AnimatePresence>
@@ -62,14 +76,23 @@ const BubbleFramer: React.FC = () => {
                             opacity: 0.2,
                             scale: 0.7
                         }}
-                        animate={{
-                            y: -window.innerHeight * 0.8,
-                            opacity: [0.2, 0.7, 0.4, 0],
-                            scale: [0.7, 1.1, 0.9, 1.2]
-                        }}
+                        animate={
+                            bubble.exploded
+                                ? {
+                                    scale: [1, 1.5, 0.2],
+                                    opacity: [0.7, 1, 0],
+                                    y: -window.innerHeight * 0.8 - 40,
+                                    boxShadow: `0 0 32px 16px ${bubble.color}99, 0 0 64px 32px #fff4`
+                                }
+                                : {
+                                    y: -window.innerHeight * 0.8,
+                                    opacity: [0.2, 0.7, 0.4, 0],
+                                    scale: [0.7, 1.1, 0.9, 1.2]
+                                }
+                        }
                         exit={{ opacity: 0, scale: 1.3 }}
                         transition={{
-                            duration: bubble.duration,
+                            duration: bubble.exploded ? 0.6 : bubble.duration,
                             delay: bubble.delay,
                             ease: "easeInOut"
                         }}
@@ -83,10 +106,12 @@ const BubbleFramer: React.FC = () => {
                             background: `radial-gradient(circle at 30% 30%, #fff 60%, ${bubble.color} 100%)`,
                             boxShadow: `0 0 16px 2px ${bubble.color}55, 0 0 32px 8px #fff2`,
                             opacity: 0.7,
-                            pointerEvents: "none",
+                            pointerEvents: "auto",
                             zIndex: 25,
                             border: `1.5px solid ${bubble.color}`
                         }}
+                        onClick={() => handleBubbleClick(bubble.id)}
+                        whileTap={{ scale: 1.5, opacity: 1 }}
                     />
                 ))}
             </AnimatePresence>
