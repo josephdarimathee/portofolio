@@ -1,4 +1,4 @@
-"use client";
+
 import Image from "next/image";
 export default function CVPage() {
     return (
@@ -63,8 +63,8 @@ export default function CVPage() {
                             <div className="font-semibold">Développeur Logiciel</div>
                             <div className="text-xs text-[#00e0ff]">Dev-Logiciel, BRAZZAVILLE | 2023-2024</div>
                             <ul className="list-disc pl-5 text-sm">
-                                <li>Développement et maintenance d'applications</li>
-                                <li>Collaboration active au sein d'équipes multidisciplinaires</li>
+                                <li>Développement et maintenance dapplications</li>
+                                <li>Collaboration active au sein déquipes multidisciplinaires</li>
                                 <li>Optimisation des performances du site</li>
                             </ul>
                         </div>
@@ -80,7 +80,7 @@ export default function CVPage() {
                             <div className="font-semibold">Supervision et structuration de bases de données clients</div>
                             <div className="text-xs text-[#00e0ff]">POINT-NOIR | 2015-2018</div>
                             <ul className="list-disc pl-5 text-sm">
-                                <li>Gestion efficace de l'information</li>
+                                <li>Gestion efficace de linformation</li>
                             </ul>
                         </div>
                     </div>
@@ -91,7 +91,7 @@ export default function CVPage() {
                             <div className="text-xs text-[#00e0ff]">IEPA, BRAZZAVILLE | 2022-2024</div>
                         </div>
                         <div className="mb-2">
-                            <div className="font-semibold">Certificat en développement d’applications mobiles</div>
+                            <div className="font-semibold">Certificat en développement dapplications mobiles</div>
                             <div className="text-xs text-[#00e0ff]">IEPA, BRAZZAVILLE | 2023-2024</div>
                         </div>
                     </div>
