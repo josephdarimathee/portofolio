@@ -77,9 +77,7 @@ const Navbar = () => {
         <div className="fixed top-[65px] right-0 h-[calc(100vh-65px)] w-4/5 max-w-xs md:hidden z-50 bg-[#030014e6] backdrop-blur-md px-8 py-6 rounded-l-2xl shadow-2xl animate-slideInRight">
           <div className="flex flex-col items-start gap-2 mb-4">
             <Link rel="stylesheet" href="/" className="cursor-pointer nav-anim" >Accuiel</Link>
-            <a href="#about-me" className="cursor-pointer nav-anim text-gray-200" onClick={() => setMenuOpen(false)}>
-              Apropos moi
-            </a>
+            <Link rel="stylesheet" href="/about" className="cursor-pointer nav-anim" > Apropos moi</Link>
             <Link rel="stylesheet" href="/skill" className="cursor-pointer nav-anim" > Competence</Link>
             <Link rel="stylesheet" href="/projets" className="cursor-pointer nav-anim" >Project</Link>
             <Link rel="stylesheet" href="/service" className="cursor-pointer nav-anim" >service</Link>
