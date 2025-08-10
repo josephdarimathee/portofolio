@@ -37,6 +37,24 @@ const Skills = () => {
                 ease: "power3.out",
               }
             );
+            // Animation continue (flottement)
+            gsap.to(el, {
+              y: -38,
+              duration: 0.5 + Math.random() * 0.25,
+              repeat: -1,
+              yoyo: true,
+              ease: "sine.inOut",
+              delay: Math.random() * 0.4
+            });
+            // Animation jumper (saut) amplifiée
+            gsap.to(el, {
+              scaleY: 0.7,
+              duration: 0.22,
+              repeat: -1,
+              yoyo: true,
+              ease: "power1.inOut",
+              delay: 0.11 * idx + Math.random() * 0.2
+            });
             // Animation GSAP au survol
             const onEnter = () => {
               gsap.to(el, { scale: 1.13, rotate: groupIdx % 2 === 0 ? 12 : -12, boxShadow: "0px 0px 24px 4px #7042f8", duration: 0.4, ease: "power2.out" });
@@ -63,7 +81,7 @@ const Skills = () => {
         }
       });
     };
-  },);
+  }, []);
 
   return (
     <section
