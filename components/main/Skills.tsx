@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Backend_skill,
   Frontend_skill,
@@ -5,12 +7,64 @@ import {
   Other_skill,
   Skill_data,
 } from "@/constants";
-import React from "react";
+import React, { useEffect, useRef } from "react";
+import gsap from "gsap";
 import SkillDataProvider from "../sub/SkillDataProvider";
 import SkillText from "../sub/SkillText";
 
 
 const Skills = () => {
+  // Réfs pour chaque groupe de skills
+  const skillRefs = [useRef<HTMLDivElement[]>([]), useRef<HTMLDivElement[]>([]), useRef<HTMLDivElement[]>([]), useRef<HTMLDivElement[]>([]), useRef<HTMLDivElement[]>([])];
+
+  useEffect(() => {
+    skillRefs.forEach((groupRef, groupIdx) => {
+      if (groupRef.current) {
+        groupRef.current.forEach((el, idx) => {
+          if (el) {
+            // Animation latérale alternée gauche/droite et rotation 90°
+            const fromX = (groupIdx % 2 === 0 ? -80 : 80);
+            gsap.fromTo(
+              el,
+              { opacity: 0, x: fromX, rotate: groupIdx % 2 === 0 ? -90 : 90, scale: 0.8 },
+              {
+                opacity: 1,
+                x: 0,
+                rotate: 0,
+                scale: 1,
+                duration: 0.8,
+                delay: idx * 0.09,
+                ease: "power3.out",
+              }
+            );
+            // Animation GSAP au survol
+            const onEnter = () => {
+              gsap.to(el, { scale: 1.13, rotate: groupIdx % 2 === 0 ? 12 : -12, boxShadow: "0px 0px 24px 4px #7042f8", duration: 0.4, ease: "power2.out" });
+            };
+            const onLeave = () => {
+              gsap.to(el, { scale: 1, rotate: 0, boxShadow: "none", duration: 0.5, ease: "elastic.out(1,0.6)" });
+            };
+            el.addEventListener("mouseenter", onEnter);
+            el.addEventListener("mouseleave", onLeave);
+          }
+        });
+      }
+    });
+    // Nettoyage des listeners
+    return () => {
+      skillRefs.forEach((groupRef) => {
+        if (groupRef.current) {
+          groupRef.current.forEach((el) => {
+            if (el) {
+              el.removeEventListener("mouseenter", () => { });
+              el.removeEventListener("mouseleave", () => { });
+            }
+          });
+        }
+      });
+    };
+  }, []);
+
   return (
     <section
       id="skills"
@@ -21,7 +75,11 @@ const Skills = () => {
 
       <div className="flex flex-row justify-around flex-wrap mt-4 gap-5 items-center">
         {Skill_data.map((image, index) => (
-          <div key={index} className="transition-transform duration-500 hover:rotate-12">
+          <div
+            key={index}
+            ref={el => { skillRefs[0].current[index] = el!; }}
+            className="transition-transform duration-500 hover:rotate-12"
+          >
             <SkillDataProvider
               src={image.Image}
               width={image.width}
@@ -34,7 +92,11 @@ const Skills = () => {
 
       <div className="flex flex-row justify-around flex-wrap mt-4 gap-5 items-center">
         {Frontend_skill.map((image, index) => (
-          <div key={index} className="transition-transform duration-500 hover:rotate-12">
+          <div
+            key={index}
+            ref={el => { skillRefs[1].current[index] = el!; }}
+            className="transition-transform duration-500 hover:rotate-12"
+          >
             <SkillDataProvider
               src={image.Image}
               width={image.width}
@@ -46,7 +108,11 @@ const Skills = () => {
       </div>
       <div className="flex flex-row justify-around flex-wrap mt-4 gap-5 items-center">
         {Backend_skill.map((image, index) => (
-          <div key={index} className="transition-transform duration-500 hover:rotate-12">
+          <div
+            key={index}
+            ref={el => { skillRefs[2].current[index] = el!; }}
+            className="transition-transform duration-500 hover:rotate-12"
+          >
             <SkillDataProvider
               src={image.Image}
               width={image.width}
@@ -58,7 +124,11 @@ const Skills = () => {
       </div>
       <div className="flex flex-row justify-around flex-wrap mt-4 gap-5 items-center">
         {Full_stack.map((image, index) => (
-          <div key={index} className="transition-transform duration-500 hover:rotate-12">
+          <div
+            key={index}
+            ref={el => { skillRefs[3].current[index] = el!; }}
+            className="transition-transform duration-500 hover:rotate-12"
+          >
             <SkillDataProvider
               src={image.Image}
               width={image.width}
@@ -70,7 +140,11 @@ const Skills = () => {
       </div>
       <div className="flex flex-row justify-around flex-wrap mt-4 gap-5 items-center">
         {Other_skill.map((image, index) => (
-          <div key={index} className="transition-transform duration-500 hover:rotate-12">
+          <div
+            key={index}
+            ref={el => { skillRefs[4].current[index] = el!; }}
+            className="transition-transform duration-500 hover:rotate-12"
+          >
             <SkillDataProvider
               src={image.Image}
               width={image.width}

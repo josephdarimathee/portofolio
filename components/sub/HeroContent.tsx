@@ -1,6 +1,7 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useRef } from "react";
+import gsap from "gsap";
 import { motion } from "framer-motion";
 import {
   slideInFromLeft,
@@ -9,28 +10,55 @@ import {
 } from "@/utils/motion";
 import { SparklesIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
-const HeroContent = () => {
+const HeroContent: React.FC = () => {
+  const heroImgRef = useRef<HTMLImageElement>(null);
+
+  useEffect(() => {
+    if (heroImgRef.current) {
+      gsap.fromTo(
+        heroImgRef.current,
+        { scale: 0.7, rotate: -20, opacity: 0 },
+        {
+          scale: 1,
+          rotate: 0,
+          opacity: 1,
+          duration: 1.2,
+          ease: "elastic.out(1, 0.6)",
+        }
+      );
+      // Animation au survol (hover)
+      const el = heroImgRef.current;
+      const onEnter = () => {
+        gsap.to(el, { scale: 1.08, rotate: 8, duration: 0.4, ease: "power2.out" });
+      };
+      const onLeave = () => {
+        gsap.to(el, { scale: 1, rotate: 0, duration: 0.5, ease: "elastic.out(1,0.6)" });
+      };
+      el.addEventListener("mouseenter", onEnter);
+      el.addEventListener("mouseleave", onLeave);
+      return () => {
+        el.removeEventListener("mouseenter", onEnter);
+        el.removeEventListener("mouseleave", onLeave);
+      };
+    }
+  }, []);
+
   return (
     <motion.div
       initial="hidden"
       animate="visible"
       className="flex flex-row items-center justify-center px-5 mt-50 w-full z-[20]  "
     >
-
       <div className="h-full w-full flex flex-col gap-5 justify-center m-auto text-start bg-[#18122b] text-gray-200   rounded-[12px]">
-
         <motion.div
           variants={slideInFromTop}
           className="Welcome-box py-[8px] px-[2px] w-70 border border-[#7042f88b] opacity-[0.9]"
-
         >
-
           <SparklesIcon className="text-[#b49bff] mr-[40px] h-5 w-5" />
           <h1 className="text-transparent  text-[13px] bg-clip-text bg-gradient-to-r from-purple-500 ">
             Developeur Fullstack  Portfolio
           </h1>
         </motion.div>
-
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
           <div className="">
             <motion.div
@@ -39,14 +67,13 @@ const HeroContent = () => {
             >
               <span className="text-gray-400">
                 Fournir
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500" id="highlight-text">
                   {" "}
                   le mellieur{" "}
                 </span>
                 lexperience de mes projet
               </span>
             </motion.div>
-
             <motion.p
               variants={slideInFromLeft(0.8)}
               className="text-base sm:text-lg text-gray-400 my-5 max-w-[600px]"
@@ -60,7 +87,6 @@ const HeroContent = () => {
               Learn More!
             </motion.a>
           </div>
-
           <div className="flex justify-center items-center" id="hero-image">
             <motion.div
               variants={slideInFromRight(0.8)}
@@ -74,6 +100,8 @@ const HeroContent = () => {
                 alt="work icons"
                 width={320}
                 height={320}
+                id="hero-image"
+                ref={heroImgRef}
                 className="relative z-10 w-[35vw] h-[35vw] max-w-[280px] max-h-[280px] min-w-[100px] min-h-[100px] rounded-full object-cover border-4 border-white"
                 priority
               />
