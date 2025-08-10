@@ -55,6 +55,15 @@ const Skills = () => {
               ease: "power1.inOut",
               delay: 0.11 * idx + Math.random() * 0.2
             });
+            // Animation transition disparition/apparition (fade out/in)
+            gsap.to(el, {
+              opacity: 0.15,
+              duration: 1.1,
+              repeat: -1,
+              yoyo: true,
+              ease: "power1.inOut",
+              delay: 0.18 * idx + Math.random() * 0.3
+            });
             // Animation GSAP au survol
             const onEnter = () => {
               gsap.to(el, { scale: 1.13, rotate: groupIdx % 2 === 0 ? 12 : -12, boxShadow: "0px 0px 24px 4px #7042f8", duration: 0.4, ease: "power2.out" });
