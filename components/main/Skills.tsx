@@ -90,7 +90,7 @@ const Skills = () => {
         }
       });
     };
-  }, []);
+  },);
 
   return (
     <section

@@ -1,11 +1,28 @@
 "use client";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
 import { motion } from "framer-motion";
 import { slideInFromTop } from "@/utils/motion";
 import Image from "next/image";
 
 const Encryption = () => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      // Animation continue de flottement sur la vidéo
+      import('gsap').then(({ default: gsap }) => {
+        gsap.to(videoRef.current, {
+          y: -30,
+          duration: 1.2,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut"
+        });
+      });
+    }
+  }, []);
+
   return (
     <div className="flex flex-row relative items-center justify-center min-h-screen w-full h-full ">
       <div className="absolute w-auto h-auto top-0 z-[5] ">
@@ -52,6 +69,7 @@ const Encryption = () => {
 
       <div className="w-full flex items-start justify-center absolute">
         <video
+          ref={videoRef}
           loop
           muted
           autoPlay

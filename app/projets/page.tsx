@@ -1,5 +1,7 @@
-
+"use client";
 import Image from "next/image";
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
 import "./allprojects-animations.css";
 
 const projets = [
@@ -54,6 +56,47 @@ const projets = [
 ];
 
 export default function Allprojet() {
+    const projetRefs = useRef<HTMLDivElement[]>([]);
+    const jeuRefs = useRef<HTMLDivElement[]>([]);
+    const appRefs = useRef<HTMLDivElement[]>([]);
+
+    useEffect(() => {
+        if (typeof window === "undefined") return;
+        const fadeIn = (el: HTMLDivElement) => {
+            gsap.to(el, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" });
+            // Animation de rotation continue
+            gsap.to(el, {
+                rotate: 360,
+                duration: 8,
+                repeat: -1,
+                ease: "linear"
+            });
+        };
+        const fadeOut = (el: HTMLDivElement) => {
+            gsap.to(el, { opacity: 0, y: 60, duration: 0.7, ease: "power3.in" });
+            gsap.to(el, { rotate: 0, duration: 0.7, ease: "power3.in" });
+        };
+        const observer = new window.IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                const el = entry.target as HTMLDivElement;
+                if (entry.isIntersecting) fadeIn(el);
+                else fadeOut(el);
+            });
+        }, { threshold: 0.18 });
+        // Capture la valeur courante des refs pour le cleanup
+        const projetsEls = projetRefs.current.slice();
+        const jeuxEls = jeuRefs.current.slice();
+        const appsEls = appRefs.current.slice();
+        projetsEls.forEach((el) => { if (el) { gsap.set(el, { opacity: 0, y: 60, rotate: 0 }); observer.observe(el); } });
+        jeuxEls.forEach((el) => { if (el) { gsap.set(el, { opacity: 0, y: 60, rotate: 0 }); observer.observe(el); } });
+        appsEls.forEach((el) => { if (el) { gsap.set(el, { opacity: 0, y: 60, rotate: 0 }); observer.observe(el); } });
+        return () => {
+            projetsEls.forEach((el) => { if (el) observer.unobserve(el); });
+            jeuxEls.forEach((el) => { if (el) observer.unobserve(el); });
+            appsEls.forEach((el) => { if (el) observer.unobserve(el); });
+        };
+    }, []);
+
     return (
         <section className="py-20 px-4 max-w-5xl mx-auto fade-in-up" id="all-projects">
             <h2 className="text-3xl font-bold mb-8 text-center animated-gradient-text">Mes Projets</h2>
@@ -124,7 +167,7 @@ export default function Allprojet() {
                             image: "/casse_brique.jpg",
                             info: "Adresse, arcade",
                             lien: "#"
-                            
+
                         }
                     ].map((jeu, idx) => (
                         <div key={idx} className="bg-[#13231a] rounded-lg shadow-lg p-4 flex flex-col items-center">
