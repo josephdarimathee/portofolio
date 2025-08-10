@@ -63,7 +63,7 @@ const Skills = () => {
         }
       });
     };
-  }, []);
+  },);
 
   return (
     <section

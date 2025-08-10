@@ -15,6 +15,7 @@ const HeroContent: React.FC = () => {
 
   useEffect(() => {
     if (heroImgRef.current) {
+      // Apparition
       gsap.fromTo(
         heroImgRef.current,
         { scale: 0.7, rotate: -20, opacity: 0 },
@@ -26,20 +27,14 @@ const HeroContent: React.FC = () => {
           ease: "elastic.out(1, 0.6)",
         }
       );
-      // Animation au survol (hover)
-      const el = heroImgRef.current;
-      const onEnter = () => {
-        gsap.to(el, { scale: 1.08, rotate: 8, duration: 0.4, ease: "power2.out" });
-      };
-      const onLeave = () => {
-        gsap.to(el, { scale: 1, rotate: 0, duration: 0.5, ease: "elastic.out(1,0.6)" });
-      };
-      el.addEventListener("mouseenter", onEnter);
-      el.addEventListener("mouseleave", onLeave);
-      return () => {
-        el.removeEventListener("mouseenter", onEnter);
-        el.removeEventListener("mouseleave", onLeave);
-      };
+      // Animation continue de saut (jump)
+      gsap.to(heroImgRef.current, {
+        y: -50,
+        duration: 0.5,
+        repeat: -1,
+        yoyo: true,
+        ease: "power1.inOut"
+      });
     }
   }, []);
 
