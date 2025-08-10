@@ -1,5 +1,7 @@
 "use client";
 
+
+
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { motion } from "framer-motion";
@@ -12,6 +14,34 @@ import { SparklesIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 const HeroContent: React.FC = () => {
   const heroImgRef = useRef<HTMLImageElement>(null);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const target = document.getElementById("hero-description");
+    if (target && gsap) {
+      // Charger le plugin ScrambleText dynamiquement
+      import("gsap/ScrambleTextPlugin").then((mod) => {
+        gsap.registerPlugin(mod.ScrambleTextPlugin || mod.default);
+        gsap.fromTo(target, {
+          scrambleText: {
+            text: "",
+            chars: "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()",
+            revealDelay: 0.2,
+            speed: 0.1
+          }
+        }, {
+          scrambleText: {
+            text: target.textContent || "",
+            chars: "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()",
+            revealDelay: 0.2,
+            speed: 0.1
+          },
+          duration: 6.2,
+          ease: "power1.inOut"
+        });
+      });
+    }
+  },);
 
   useEffect(() => {
     if (heroImgRef.current) {
@@ -72,6 +102,7 @@ const HeroContent: React.FC = () => {
             <motion.p
               variants={slideInFromLeft(0.8)}
               className="text-base sm:text-lg text-gray-400 my-5 max-w-[600px]"
+              id="hero-description"
             >
               Je suis ingénieur logiciel Full Stack avec une expérience en développement de sites web, dapplications mobiles et de logiciels. Découvrez mes projets et mes compétences.
             </motion.p>

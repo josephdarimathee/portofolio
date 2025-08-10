@@ -1,48 +1,74 @@
 
 "use client";
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useLayoutEffect } from "react";
+import { useEffect } from "react";
 import ProjectCard from "../sub/ProjectCard";
 import gsap from "gsap";
 
 const Projects = () => {
   const cardRefs = useRef<HTMLDivElement[]>([]);
 
-  useEffect(() => {
+  // Animation GSAP apparition/disparition des cards au scroll
+  useLayoutEffect(() => {
     if (typeof window === "undefined") return;
-    const observer = new window.IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const el = entry.target as HTMLDivElement;
-          if (entry.isIntersecting) {
-            gsap.to(el, {
-              opacity: 1,
-              y: 0,
-              duration: 0.7,
-              ease: "power3.out"
-            });
-          } else {
-            gsap.to(el, {
-              opacity: 0,
-              y: 60,
-              duration: 0.7,
-              ease: "power3.in"
-            });
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-    cardRefs.current.forEach((el) => {
+    const observer = new window.IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const el = entry.target as HTMLDivElement;
+        if (entry.isIntersecting) {
+          gsap.to(el, {
+            opacity: 1,
+            y: 0,
+            duration: 0.7,
+            ease: "power3.out"
+          });
+        } else {
+          gsap.to(el, {
+            opacity: 0,
+            y: 60,
+            duration: 0.7,
+            ease: "power3.in"
+          });
+        }
+      });
+    }, { threshold: 0.2 });
+    const localRefs = cardRefs.current.slice();
+    localRefs.forEach((el) => {
       if (el) {
         gsap.set(el, { opacity: 0, y: 60 });
         observer.observe(el);
       }
     });
     return () => {
-      cardRefs.current.forEach((el) => {
+      localRefs.forEach((el) => {
         if (el) observer.unobserve(el);
       });
     };
+  }, []);
+
+
+  // Animation SplitText GSAP sur le h1 principal de la section Projects
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    (async () => {
+
+      const h1 = document.querySelector("#projects h1");
+      if (h1) {
+        // Split le texte en chars
+
+        // Animation GSAP sur chaque lettre
+        gsap.fromTo(
+          h1.querySelectorAll('.char'),
+          { opacity: 0, y: 40 },
+          {
+            opacity: 1,
+            y: 0,
+            stagger: 0.04,
+            duration: 3.7,
+            ease: "power2.out"
+          }
+        );
+      }
+    })();
   }, []);
 
   return (
@@ -53,7 +79,7 @@ const Projects = () => {
       <h1 className="text-[40px] font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500 py-20">
         My Projects
       </h1>
-      <div className="h-full w-full flex flex-col md:flex-row gap-10 px-10 py-9">
+      <div className="h-full w-full flex flex-col md:flex-row gap-10 px-10 py-9 justify-center items-center">
         <div ref={el => { if (el) cardRefs.current[0] = el; }}>
           <ProjectCard
             src="/Macbook-Air-127.0.0.1 (1).png"
@@ -62,6 +88,10 @@ const Projects = () => {
             technologies={["Next.js", "React", "Tailwind CSS", "Framer Motion"]}
             siteUrl="https://votre-portfolio.com"
             infos="Déploiement sur Vercel, SEO optimisé."
+            titleClassName="project-title"
+            descriptionClassName="project-description"
+            technologiesClassName="project-technologies"
+            infosClassName="project-infos"
           />
         </div>
         <div ref={el => { if (el) cardRefs.current[1] = el; }}>
@@ -72,6 +102,10 @@ const Projects = () => {
             technologies={["React", "CSS Modules", "Framer Motion"]}
             siteUrl="https://exemple-cards.com"
             infos="Composants réutilisables, design moderne."
+            titleClassName="project-title"
+            descriptionClassName="project-description"
+            technologiesClassName="project-technologies"
+            infosClassName="project-infos"
           />
         </div>
         <div ref={el => { if (el) cardRefs.current[2] = el; }}>
@@ -82,10 +116,14 @@ const Projects = () => {
             technologies={["Next.js", "Three.js", "Tailwind CSS"]}
             siteUrl="https://space-website.com"
             infos="Effets 3D, expérience utilisateur immersive."
+            titleClassName="project-title"
+            descriptionClassName="project-description"
+            technologiesClassName="project-technologies"
+            infosClassName="project-infos"
           />
         </div>
       </div>
-      <div className="h-full w-full flex flex-col md:flex-row gap-10 px-10">
+      <div className="h-full w-full flex flex-col md:flex-row gap-10 px-10 justify-center items-center">
         <div ref={el => { if (el) cardRefs.current[3] = el; }}>
           <ProjectCard
             src="/Projet1.png"
@@ -94,6 +132,10 @@ const Projects = () => {
             technologies={["React", "Redux", "Node.js", "MongoDB"]}
             siteUrl="https://gestion-taches.com"
             infos="API REST, authentification sécurisée."
+            titleClassName="project-title"
+            descriptionClassName="project-description"
+            technologiesClassName="project-technologies"
+            infosClassName="project-infos"
           />
         </div>
         <div ref={el => { if (el) cardRefs.current[4] = el; }}>
@@ -104,6 +146,10 @@ const Projects = () => {
             technologies={["Next.js", "Stripe", "Prisma", "MySQL"]}
             siteUrl="https://reservation.com"
             infos="Paiement en ligne, gestion calendrier."
+            titleClassName="project-title"
+            descriptionClassName="project-description"
+            technologiesClassName="project-technologies"
+            infosClassName="project-infos"
           />
         </div>
         <div ref={el => { if (el) cardRefs.current[5] = el; }}>
@@ -114,10 +160,14 @@ const Projects = () => {
             technologies={["React", "Canvas API", "Firebase"]}
             siteUrl="https://jeu-educatif.com"
             infos="Scores en ligne, responsive mobile."
+            titleClassName="project-title"
+            descriptionClassName="project-description"
+            technologiesClassName="project-technologies"
+            infosClassName="project-infos"
           />
         </div>
       </div>
-      <div className="h-full w-full flex flex-col md:flex-row gap-10 px-10 py-5">
+      <div className="h-full w-full flex flex-col md:flex-row gap-10 px-10 py-5 justify-center items-center">
         <div ref={el => { if (el) cardRefs.current[6] = el; }}>
           <ProjectCard
             src="/Projet1D.png"
@@ -126,6 +176,10 @@ const Projects = () => {
             technologies={["Next.js", "Markdown", "Vercel"]}
             siteUrl="https://blog-personnel.com"
             infos="SEO, publication facile, design épuré."
+            titleClassName="project-title"
+            descriptionClassName="project-description"
+            technologiesClassName="project-technologies"
+            infosClassName="project-infos"
           />
         </div>
       </div>
