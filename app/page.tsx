@@ -5,7 +5,7 @@ import Skills from "@/components/main/Skills";
 export default function Home() {
   return (
     <main className="h-full w-full">
-      <div className="flex flex-col gap-20 bg-white">
+      <div className="flex flex-col gap-20 bg-[#18122b] text-gray-200">
         <Hero />
         <Skills />
         <Encryption />

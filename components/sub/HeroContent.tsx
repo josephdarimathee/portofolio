@@ -17,7 +17,7 @@ const HeroContent = () => {
       className="flex flex-row items-center justify-center px-5 mt-50 w-full z-[20]  "
     >
 
-      <div className="h-full w-full flex flex-col gap-5 justify-center m-auto text-start bg-white   rounded-[12px]">
+      <div className="h-full w-full flex flex-col gap-5 justify-center m-auto text-start bg-[#18122b] text-gray-200   rounded-[12px]">
 
         <motion.div
           variants={slideInFromTop}
