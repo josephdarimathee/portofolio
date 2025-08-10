@@ -44,10 +44,11 @@ const HeroContent: React.FC = () => {
   },);
 
   useEffect(() => {
-    if (heroImgRef.current) {
+    const img = heroImgRef.current;
+    if (img) {
       // Apparition
       gsap.fromTo(
-        heroImgRef.current,
+        img,
         { scale: 0.7, rotate: -20, opacity: 0 },
         {
           scale: 1,
@@ -58,13 +59,37 @@ const HeroContent: React.FC = () => {
         }
       );
       // Animation continue de saut (jump)
-      gsap.to(heroImgRef.current, {
+      gsap.to(img, {
         y: -50,
         duration: 0.5,
         repeat: -1,
         yoyo: true,
         ease: "power1.inOut"
       });
+
+      // Animation retournement et roulis au survol
+      const handleMouseEnter = () => {
+        gsap.to(img, {
+          rotateY: 360,
+          rotateZ: 180,
+          duration: 1.2,
+          ease: "power2.inOut"
+        });
+      };
+      const handleMouseLeave = () => {
+        gsap.to(img, {
+          rotateY: 0,
+          rotateZ: 0,
+          duration: 1.2,
+          ease: "power2.inOut"
+        });
+      };
+      img.addEventListener("mouseenter", handleMouseEnter);
+      img.addEventListener("mouseleave", handleMouseLeave);
+      return () => {
+        img.removeEventListener("mouseenter", handleMouseEnter);
+        img.removeEventListener("mouseleave", handleMouseLeave);
+      };
     }
   }, []);
 
