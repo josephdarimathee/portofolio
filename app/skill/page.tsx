@@ -35,66 +35,72 @@ const competencesJeux = [
 
 export default function SkillPage() {
     return (
-        <main className="min-h-screen py-16 px-4 max-w-6xl mx-auto">
-            <h1 className="text-3xl font-bold text-center mb-12 text-[#7042f8]">Mes Compétences</h1>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <div>
-                    <h2 className="text-2xl font-semibold mb-6 text-[#a076f8] text-center">Programmation</h2>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                        {competencesProgrammation.map((comp, idx) => (
-                            <motion.div
-                                key={idx}
-                                className="flex flex-col items-center bg-[#18122b] rounded-xl p-4 shadow-md hover:scale-105 transition-transform duration-200 border border-[#7042f8]/30 group"
-                                initial={{ opacity: 0, y: 40, rotateY: -90 }}
-                                whileInView={{ opacity: 1, y: 0, rotateY: 0 }}
-                                whileHover={{ scale: 1.18, rotate: 8, boxShadow: "0px 0px 32px 8px #a076f8, 0px 8px 32px 0px #7042f8" }}
-                                whileTap={{ scale: 0.95 }}
-                                transition={{ type: "spring", stiffness: 120, damping: 12, duration: 0.5, delay: idx * 0.07 }}
-                                viewport={{ once: true }}
-                            >
+        <motion.div
+            initial="hidden"
+            animate="visible"
+            className="flex justify-center z-[20]  "
+        >
+            <main className="min-h-screen py-16 px-4 max-w-6xl mx-auto">
+                <h1 className="text-3xl font-bold text-center mb-12 text-[#7042f8]">Mes Compétences</h1>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <div>
+                        <h2 className="text-2xl font-semibold mb-6 text-[#a076f8] text-center">Programmation</h2>
+                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                            {competencesProgrammation.map((comp, idx) => (
                                 <motion.div
-                                    whileHover={{ rotate: 360, scale: 1.2 }}
-                                    whileTap={{ scale: 0.9 }}
-                                    transition={{ duration: 0.7, ease: "backInOut" }}
-                                    className="relative"
+                                    key={idx}
+                                    className="flex flex-col items-center bg-[#18122b] rounded-xl p-4 shadow-md hover:scale-105 transition-transform duration-200 border border-[#7042f8]/30 group"
+                                    initial={{ opacity: 0, y: 40, rotateY: -90 }}
+                                    whileInView={{ opacity: 1, y: 0, rotateY: 0 }}
+                                    whileHover={{ scale: 1.18, rotate: 8, boxShadow: "0px 0px 32px 8px #a076f8, 0px 8px 32px 0px #7042f8" }}
+                                    whileTap={{ scale: 0.95 }}
+                                    transition={{ type: "spring", stiffness: 120, damping: 12, duration: 0.5, delay: idx * 0.07 }}
+                                    viewport={{ once: true }}
                                 >
-                                    <span className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-90 group-hover:scale-125 transition-all duration-500 blur-lg bg-gradient-to-tr from-[#7042f8] to-[#a076f8] z-0"></span>
-                                    <Image src={comp.img} alt={comp.nom} width={48} height={48} className="relative rounded bg-[#18122b] mb-2 z-10 group-hover:shadow-[0_0_32px_8px_#a076f8] transition-shadow duration-500" />
+                                    <motion.div
+                                        whileHover={{ rotate: 360, scale: 1.2 }}
+                                        whileTap={{ scale: 0.9 }}
+                                        transition={{ duration: 0.7, ease: "backInOut" }}
+                                        className="relative"
+                                    >
+                                        <span className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-90 group-hover:scale-125 transition-all duration-500 blur-lg bg-gradient-to-tr from-[#7042f8] to-[#a076f8] z-0"></span>
+                                        <Image src={comp.img} alt={comp.nom} width={48} height={48} className="relative rounded bg-[#18122b] mb-2 z-10 group-hover:shadow-[0_0_32px_8px_#a076f8] transition-shadow duration-500" />
+                                    </motion.div>
+                                    <span className="text-gray-200 text-center text-sm font-semibold">{comp.nom}</span>
                                 </motion.div>
-                                <span className="text-gray-200 text-center text-sm font-semibold">{comp.nom}</span>
-                            </motion.div>
-                        ))}
+                            ))}
+                        </div>
+                    </div>
+                    <div>
+                        <h2 className="text-2xl font-semibold mb-6 text-[#00e0ff] text-center">Développement de jeux vidéo</h2>
+                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                            {competencesJeux.map((comp, idx) => (
+                                <motion.div
+                                    key={idx}
+                                    className="flex flex-col items-center bg-[#18122b] rounded-xl p-4 shadow-md hover:scale-105 transition-transform duration-200 border border-[#00e0ff]/30 group"
+                                    initial={{ opacity: 0, y: 40, rotateY: 90 }}
+                                    whileInView={{ opacity: 1, y: 0, rotateY: 0 }}
+                                    whileHover={{ scale: 1.18, rotate: -8, boxShadow: "0px 0px 32px 8px #00e0ff, 0px 8px 32px 0px #7042f8" }}
+                                    whileTap={{ scale: 0.95 }}
+                                    transition={{ type: "spring", stiffness: 120, damping: 12, duration: 0.5, delay: idx * 0.07 }}
+                                    viewport={{ once: true }}
+                                >
+                                    <motion.div
+                                        whileHover={{ rotate: -360, scale: 1.2 }}
+                                        whileTap={{ scale: 0.9 }}
+                                        transition={{ duration: 0.7, ease: "backInOut" }}
+                                        className="relative"
+                                    >
+                                        <span className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-90 group-hover:scale-125 transition-all duration-500 blur-lg bg-gradient-to-tr from-[#00e0ff] to-[#7042f8] z-0"></span>
+                                        <Image src={comp.img} alt={comp.nom} width={48} height={48} className="relative rounded bg-[#18122b] mb-2 z-10 group-hover:shadow-[0_0_32px_8px_#00e0ff] transition-shadow duration-500" />
+                                    </motion.div>
+                                    <span className="text-gray-200 text-center text-sm font-semibold">{comp.nom}</span>
+                                </motion.div>
+                            ))}
+                        </div>
                     </div>
                 </div>
-                <div>
-                    <h2 className="text-2xl font-semibold mb-6 text-[#00e0ff] text-center">Développement de jeux vidéo</h2>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                        {competencesJeux.map((comp, idx) => (
-                            <motion.div
-                                key={idx}
-                                className="flex flex-col items-center bg-[#18122b] rounded-xl p-4 shadow-md hover:scale-105 transition-transform duration-200 border border-[#00e0ff]/30 group"
-                                initial={{ opacity: 0, y: 40, rotateY: 90 }}
-                                whileInView={{ opacity: 1, y: 0, rotateY: 0 }}
-                                whileHover={{ scale: 1.18, rotate: -8, boxShadow: "0px 0px 32px 8px #00e0ff, 0px 8px 32px 0px #7042f8" }}
-                                whileTap={{ scale: 0.95 }}
-                                transition={{ type: "spring", stiffness: 120, damping: 12, duration: 0.5, delay: idx * 0.07 }}
-                                viewport={{ once: true }}
-                            >
-                                <motion.div
-                                    whileHover={{ rotate: -360, scale: 1.2 }}
-                                    whileTap={{ scale: 0.9 }}
-                                    transition={{ duration: 0.7, ease: "backInOut" }}
-                                    className="relative"
-                                >
-                                    <span className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-90 group-hover:scale-125 transition-all duration-500 blur-lg bg-gradient-to-tr from-[#00e0ff] to-[#7042f8] z-0"></span>
-                                    <Image src={comp.img} alt={comp.nom} width={48} height={48} className="relative rounded bg-[#18122b] mb-2 z-10 group-hover:shadow-[0_0_32px_8px_#00e0ff] transition-shadow duration-500" />
-                                </motion.div>
-                                <span className="text-gray-200 text-center text-sm font-semibold">{comp.nom}</span>
-                            </motion.div>
-                        ))}
-                    </div>
-                </div>
-            </div>
-        </main>
+            </main>
+        </motion.div>
     );
 }

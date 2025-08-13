@@ -1,7 +1,5 @@
 "use client";
 
-
-
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { motion } from "framer-motion";
@@ -25,14 +23,14 @@ const HeroContent: React.FC = () => {
         gsap.fromTo(target, {
           scrambleText: {
             text: "",
-            chars: "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()",
+            chars: "",
             revealDelay: 0.2,
             speed: 0.1
           }
         }, {
           scrambleText: {
             text: target.textContent || "",
-            chars: "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()",
+            chars: "",
             revealDelay: 0.2,
             speed: 0.1
           },
@@ -165,3 +163,6 @@ const HeroContent: React.FC = () => {
 };
 
 export default HeroContent;
+
+
+
