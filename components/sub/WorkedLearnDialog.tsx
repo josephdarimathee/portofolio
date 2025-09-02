@@ -20,7 +20,7 @@ const WorkedLearnDialog: React.FC = () => {
     };
 
     const handleVisitSite = () => {
-        window.open('https://workedlearn.com', '_blank');
+        window.open('https://site-vitrine-jet.vercel.app/', '_blank');
         setIsOpen(false);
     };
 
@@ -102,6 +102,7 @@ const WorkedLearnDialog: React.FC = () => {
                             <button
                                 onClick={handleVisitSite}
                                 className="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all transform hover:scale-105 shadow-lg"
+                            
                             >
                                 Visiter le site
                             </button>
