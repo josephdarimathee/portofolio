@@ -1,6 +1,6 @@
 "use client";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import "./allprojects-animations.css";
 import { motion } from "framer-motion";
@@ -8,49 +8,49 @@ import { motion } from "framer-motion";
 const projets = [
     {
         titre: "Portfolio Web",
-        description: "Un site personnel moderne pour présenter mes compétences et réalisations.",
+    description: "Un site personnel moderne pour présenter mes compétences et réalisations.",
         image: "/NextWebsite.png",
         lien: "#"
     },
     {
         titre: "Application Food Delivery",
-        description: "Application de commande de repas avec React et Node.js.",
+    description: "Application de commande de repas avec React et Node.js.",
         image: "/foodd.png",
         lien: "#"
     },
     {
         titre: "Dashboard Nike",
-        description: "Dashboard interactif pour visualiser les ventes Nike.",
+    description: "Dashboard interactif pour visualiser les ventes Nike.",
         image: "/nikedash.png",
         lien: "#"
     },
     {
         titre: "Réseau Social React",
-        description: "Plateforme sociale moderne avec React et Firebase.",
+    description: "Plateforme sociale moderne avec React et Firebase.",
         image: "/reactsocialmedia1.png",
         lien: "#"
     },
     {
         titre: "E-commerce Sneakers",
-        description: "Site e-commerce pour sneakers avec paiement Stripe.",
+    description: "Site e-commerce pour sneakers avec paiement Stripe.",
         image: "/shoemap.png",
         lien: "#"
     },
     {
         titre: "Gestionnaire de tâches",
-        description: "Application de gestion de tâches collaborative.",
+    description: "Application de gestion de tâches collaborative.",
         image: "/Frame 1.png",
         lien: "#"
     },
     {
         titre: "Blog Développeur",
-        description: "Blog personnel pour partager des articles tech.",
+    description: "Blog personnel pour partager des articles tech.",
         image: "/profiol3.png",
         lien: "#"
     },
     {
         titre: "Landing Page Startup",
-        description: "Landing page animée pour une startup innovante.",
+    description: "Landing page animée pour une startup innovante.",
         image: "/SpaceWebsite.png",
         lien: "#"
     },
@@ -58,6 +58,19 @@ const projets = [
 
 export default function Allprojet() {
     const projetRefs = useRef<HTMLDivElement[]>([]);
+    // Type pour le contenu du popup
+    type PopupContent = {
+        titre: string;
+        description: string;
+        image: string;
+        info?: string;
+        lien?: string;
+    };
+    // Hooks pour le popup
+    const [popupOpen, setPopupOpen] = useState(false);
+    const [popupContent, setPopupContent] = useState<PopupContent | null>(null);
+    const openPopup = (item: PopupContent) => { setPopupContent(item); setPopupOpen(true); };
+    const closePopup = () => { setPopupOpen(false); setPopupContent(null); };
     const jeuRefs = useRef<HTMLDivElement[]>([]);
     const appRefs = useRef<HTMLDivElement[]>([]);
 
@@ -104,6 +117,21 @@ export default function Allprojet() {
             animate="visible"
             className="flex justify-center z-[20]  "
         >
+            {/* Modal Popup */}
+            {popupOpen && popupContent && (
+                <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-[100]">
+                    <div className="bg-[#18122b] rounded-2xl shadow-2xl p-8 max-w-md w-full relative border border-[#7042f8]/40">
+                        <button onClick={closePopup} className="absolute top-4 right-4 text-gray-400 hover:text-white text-xl">&times;</button>
+                        <Image src={popupContent.image} alt={popupContent.titre} width={320} height={180} className="rounded mb-4 object-cover mx-auto" />
+                        <h3 className="text-2xl font-bold text-[#7042f8] mb-2 text-center">{popupContent.titre}</h3>
+                        <p className="text-gray-300 mb-4 text-center">{popupContent.description}</p>
+                        {popupContent.info && <p className="text-xs text-gray-400 mb-4 text-center">{popupContent.info}</p>}
+                        {popupContent.lien && popupContent.lien !== "#" && (
+                            <a href={popupContent.lien} target="_blank" rel="noopener noreferrer" className="block text-center px-4 py-2 bg-[#7042f8] hover:bg-[#a076f8] text-white rounded font-bold transition mx-auto w-fit">Lien externe</a>
+                        )}
+                    </div>
+                </div>
+            )}
             <section className="py-20 px-4 max-w-5xl mx-auto fade-in-up" id="all-projects">
                 <h2 className="text-3xl font-bold mb-8 text-center animated-gradient-text">Mes Projets</h2>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -122,7 +150,7 @@ export default function Allprojet() {
                             />
                             <h3 className="text-xl font-semibold text-white mb-2 card-title-anim">{projet.titre}</h3>
                             <p className="text-gray-300 mb-4 text-center card-desc-anim">{projet.description}</p>
-                            <a href={projet.lien} className="text-[#7042f8] hover:underline font-bold link-anim">Voir le projet</a>
+                            <button onClick={() => openPopup(projet)} className="w-full bg-[#7042f8] hover:bg-[#a076f8] text-white font-bold py-2 px-4 rounded transition-all duration-200 shadow-md">Voir le projet</button>
                         </div>
                     ))}
                 </div>
@@ -141,7 +169,7 @@ export default function Allprojet() {
                             },
                             {
                                 titre: "Morpion (Tic-Tac-Toe)",
-                                description: "Affrontez un ami ou l'ordinateur dans ce classique du jeu de réflexion.",
+                                description: "Affrontez un ami ou l&apos;ordinateur dans ce classique du jeu de réflexion.",
                                 image: "/morpion.jpg",
                                 info: "2 joueurs, stratégie",
                                 lien: "#"
@@ -181,7 +209,7 @@ export default function Allprojet() {
                                 <h3 className="text-xl font-semibold text-green-300 mb-2">{jeu.titre}</h3>
                                 <p className="text-gray-200 mb-2 text-center">{jeu.description}</p>
                                 <p className="text-xs text-gray-400 mb-4">{jeu.info}</p>
-                                <a href={jeu.lien} className="px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded font-bold transition">Jouer le jeu</a>
+                                <button onClick={() => openPopup(jeu)} className="px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded font-bold transition">Jouer le jeu</button>
                             </div>
                         ))}
                     </div>
@@ -240,7 +268,7 @@ export default function Allprojet() {
                                 <h3 className="text-xl font-semibold text-blue-300 mb-2">{app.titre}</h3>
                                 <p className="text-gray-200 mb-2 text-center">{app.description}</p>
                                 <p className="text-xs text-gray-400 mb-4">{app.info}</p>
-                                <a href={app.lien} className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded font-bold transition">Télécharger lapplication</a>
+                                <button onClick={() => openPopup(app)} className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded font-bold transition">Télécharger lapplication</button>
                             </div>
                         ))}
                     </div>
