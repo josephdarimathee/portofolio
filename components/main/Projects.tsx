@@ -83,7 +83,7 @@ const Projects = () => {
         id="projects"
       >
         <h1 className="text-[40px] font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500 py-20">
-          My Projects
+          Mes Projets
         </h1>
         <div className="h-full w-full flex flex-col md:flex-row gap-10 px-10 py-9 justify-center items-center">
           <div ref={el => { if (el) cardRefs.current[0] = el; }}>

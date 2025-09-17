@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const services = [
     // Pour chaque service, ajoutez une propriété image (chemin relatif ou URL)
@@ -84,7 +85,9 @@ export default function ServicePage() {
                                     <span className="text-sm text-gray-400">Déploiement/année : <span className="text-blue-400 font-bold">{service.prix_deploiement}</span></span>
                                 </div>
                                 <div className="mt-2">
-                                    <button className="w-full bg-[#7042f8] hover:bg-[#a076f8] text-white font-bold py-2 px-4 rounded transition-all duration-200 shadow-md">Souscrire</button>
+                                    <Link rel="stylesheet" href="/projets">
+                                    <button className="w-full bg-[#7042f8] hover:bg-[#a076f8] text-white font-bold py-2 px-4 rounded transition-all duration-200 shadow-md" >Souscrire</button>
+                                     </Link>
                                 </div>
                             </div>
                         </div>

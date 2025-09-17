@@ -133,7 +133,7 @@ const HeroContent: React.FC = () => {
               variants={slideInFromLeft(1)}
               className="py-2 button-primary text-center text-white cursor-pointer rounded-lg max-w-[200px]"
             >
-              Learn More!
+              Apprendre encore plus!
             </motion.a>
           </div>
           <div className="flex justify-center items-center" id="hero-image">
