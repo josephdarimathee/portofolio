@@ -90,7 +90,7 @@ const WorkedLearnDialog: React.FC = () => {
                             </button>
                         </div>
                         <p className="text-gray-300 mb-6 text-lg">
-                            Visitez notre site vitrine pour découvrir nos services et réalisations.
+                            Visitez mon  site vitrine pour découvrir mes services et réalisations.
                         </p>
                         <div className="flex flex-col sm:flex-row justify-end space-y-4 sm:space-y-0 sm:space-x-4">
                             <button
