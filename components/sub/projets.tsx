@@ -130,9 +130,14 @@ export default function Allprojet() {
                         <h3 className="text-2xl font-bold text-[#7042f8] mb-2 text-center">{popupContent.titre}</h3>
                         <p className="text-gray-300 mb-4 text-center">{popupContent.description}</p>
                         {popupContent.info && <p className="text-xs text-gray-400 mb-4 text-center">{popupContent.info}</p>}
-                        {popupContent.lien && popupContent.lien !== "#" && (
-                            <a href={popupContent.lien} target="_blank" rel="noopener noreferrer" className="block text-center px-4 py-2 bg-[#7042f8] hover:bg-[#a076f8] text-white rounded font-bold transition mx-auto w-fit">Lien externe</a>
-                        )}
+                        <div className="flex items-center justify-center gap-3 mt-4">
+                            {popupContent.lien && popupContent.lien !== "#" ? (
+                                <a href={popupContent.lien} target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-[#7042f8] hover:bg-[#a076f8] text-white rounded font-bold transition shadow-md">Visiter le site</a>
+                            ) : (
+                                <button disabled className="px-4 py-2 bg-gray-600 text-white rounded font-bold transition opacity-60">Lien indisponible</button>
+                            )}
+                            <button onClick={closePopup} className="px-4 py-2 border border-gray-600 text-gray-200 rounded font-bold transition">Fermer</button>
+                        </div>
                     </div>
                 </div>
             )}
@@ -213,7 +218,7 @@ export default function Allprojet() {
                                 <h3 className="text-xl font-semibold text-green-300 mb-2">{jeu.titre}</h3>
                                 <p className="text-gray-200 mb-2 text-center">{jeu.description}</p>
                                 <p className="text-xs text-gray-400 mb-4">{jeu.info}</p>
-                                <button onClick={() => openPopup(jeu)} className="px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded font-bold transition">Jouer le jeu</button>
+                                <button onClick={() => openPopup(jeu)} className="w-full bg-[#7042f8] hover:bg-[#a076f8] text-white font-bold py-2 px-4 rounded transition-all duration-200 shadow-md">Jouer le jeu</button>
                             </div>
                         ))}
                     </div>
@@ -272,7 +277,7 @@ export default function Allprojet() {
                                 <h3 className="text-xl font-semibold text-blue-300 mb-2">{app.titre}</h3>
                                 <p className="text-gray-200 mb-2 text-center">{app.description}</p>
                                 <p className="text-xs text-gray-400 mb-4">{app.info}</p>
-                                <button onClick={() => openPopup(app)} className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded font-bold transition">Télécharger lapplication</button>
+                                <button onClick={() => openPopup(app)} className="w-full bg-[#7042f8] hover:bg-[#a076f8] text-white font-bold py-2 px-4 rounded transition-all duration-200 shadow-md">Télécharger l&apos;application</button>
                             </div>
                         ))}
                     </div>
