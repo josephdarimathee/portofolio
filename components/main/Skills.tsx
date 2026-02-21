@@ -104,8 +104,7 @@ const Skills = () => {
         {Skill_data.map((image, index) => (
           <div
             key={index}
-            ref={el => { skillRefs[0].current[index] = el!; }}
-            className="transition-transform duration-500 hover:rotate-12"
+            className=""
           >
             <SkillDataProvider
               src={image.Image}
@@ -121,8 +120,8 @@ const Skills = () => {
         {Frontend_skill.map((image, index) => (
           <div
             key={index}
-            ref={el => { skillRefs[1].current[index] = el!; }}
-            className="transition-transform duration-500 hover:rotate-12"
+            
+            className=""
           >
             <SkillDataProvider
               src={image.Image}
@@ -137,8 +136,8 @@ const Skills = () => {
         {Backend_skill.map((image, index) => (
           <div
             key={index}
-            ref={el => { skillRefs[2].current[index] = el!; }}
-            className="transition-transform duration-500 hover:rotate-12"
+           
+            className=""
           >
             <SkillDataProvider
               src={image.Image}
@@ -153,8 +152,7 @@ const Skills = () => {
         {Full_stack.map((image, index) => (
           <div
             key={index}
-            ref={el => { skillRefs[3].current[index] = el!; }}
-            className="transition-transform duration-500 hover:rotate-12"
+            className=""
           >
             <SkillDataProvider
               src={image.Image}
@@ -169,8 +167,8 @@ const Skills = () => {
         {Other_skill.map((image, index) => (
           <div
             key={index}
-            ref={el => { skillRefs[4].current[index] = el!; }}
-            className="transition-transform duration-500 hover:rotate-12"
+           
+            className="transition-transform duration-00 hover:rotate-12"
           >
             <SkillDataProvider
               src={image.Image}
