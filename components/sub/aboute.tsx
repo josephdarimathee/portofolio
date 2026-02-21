@@ -18,7 +18,7 @@ const Aboute: React.FC = () => {
                 <div className="flex flex-col md:flex-row items-center gap-10 max-w-4xl w-full bg-[#231942]/60 rounded-2xl p-8 shadow-lg">
                     <div className="flex-shrink-0">
                         <Image
-                            src="/PHprofil.jpg"
+                            src="/profil5.jpeg"
                             alt="Photo de profil"
                             width={180}
                             height={180}
