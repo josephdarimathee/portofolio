@@ -25,6 +25,7 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/logo.png" type="image/png" />
       </head>
+      <meta name="google-site-verification" content="FXbCaQQG0JrwrQkbZAnZ5eazH2Je6WmnKxwWjU-d52I" />
       <body
         className={`${inter.className} bg-[#030014] overflow-y-scroll overflow-x-hidden`}
       >
