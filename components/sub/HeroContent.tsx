@@ -11,7 +11,7 @@ import {
 import { SparklesIcon, ArrowDownTrayIcon, ArrowRightIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 
-const techStack = ["React", "Next.js", "Node.js", "TypeScript", "MongoDB"];
+const techStack = ["React", "Next.js", "Node.js", "TypeScript", "Mysql","Php", "Python","Flask", "Django","ReactNative","Godo","JavaScript","Jquery","Tailwindcss","HTML","CSS"];
 
 const HeroContent: React.FC = () => {
   const heroImgRef = useRef<HTMLImageElement>(null);
