@@ -104,7 +104,7 @@ const HeroContent: React.FC = () => {
             className="text-sm sm:text-base md:text-[1.05rem] text-gray-400 leading-relaxed max-w-[520px]"
             id="hero-description"
           >
-            Ingénieur logiciel Full Stack passionné par la création d'applications web et mobiles
+            Ingénieur logiciel Full Stack passionné par la création d applications web et mobiles
             performantes. Je transforme vos idées en solutions digitales modernes et évolutives.
           </motion.p>
 
