@@ -58,7 +58,7 @@ const Navbar = () => {
               />
             </div>
             <span className="font-bold text-base sm:text-lg text-white tracking-wide">
-              WebChain<span className="text-transparent bg-clip-text bg-gradient-to-r from-[#7042f8] to-[#00e0ff]">Dev</span>
+              Leader<span className="text-transparent bg-clip-text bg-gradient-to-r from-[#7042f8] to-[#00e0ff]">Dev</span>
             </span>
           </a>
 
