@@ -8,8 +8,11 @@ import {
   slideInFromRight,
   slideInFromTop,
 } from "@/utils/motion";
-import { SparklesIcon } from "@heroicons/react/24/solid";
+import { SparklesIcon, ArrowDownTrayIcon, ArrowRightIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
+
+const techStack = ["React", "Next.js", "Node.js", "TypeScript", "MongoDB"];
+
 const HeroContent: React.FC = () => {
   const heroImgRef = useRef<HTMLImageElement>(null);
 
@@ -17,152 +20,198 @@ const HeroContent: React.FC = () => {
     if (typeof window === "undefined") return;
     const target = document.getElementById("hero-description");
     if (target && gsap) {
-      // Charger le plugin ScrambleText dynamiquement
       import("gsap/ScrambleTextPlugin").then((mod) => {
         gsap.registerPlugin(mod.ScrambleTextPlugin || mod.default);
-        gsap.fromTo(target, {
-          scrambleText: {
-            text: "",
-            chars: "",
-            revealDelay: 0.2,
-            speed: 0.1
+        gsap.fromTo(
+          target,
+          { scrambleText: { text: "", chars: "", revealDelay: 0.3, speed: 0.08 } },
+          {
+            scrambleText: { text: target.textContent || "", chars: "", revealDelay: 0.3, speed: 0.08 },
+            duration: 5,
+            ease: "power1.inOut",
+            delay: 0.8,
           }
-        }, {
-          scrambleText: {
-            text: target.textContent || "",
-            chars: "",
-            revealDelay: 0.2,
-            speed: 0.1
-          },
-          duration: 6.2,
-          ease: "power1.inOut"
-        });
+        );
       });
     }
-  },);
+  }, []);
 
   useEffect(() => {
     const img = heroImgRef.current;
-    if (img) {
-      // Apparition
-      gsap.fromTo(
-        img,
-        { scale: 0.7, rotate: -20, opacity: 0 },
-        {
-          scale: 1,
-          rotate: 0,
-          opacity: 1,
-          duration: 1.2,
-          ease: "elastic.out(1, 0.6)",
-        }
-      );
-      // Animation continue de saut (jump)
-      gsap.to(img, {
-        y: -50,
-        duration: 0.5,
-        repeat: -1,
-        yoyo: true,
-        ease: "power1.inOut"
-      });
+    if (!img) return;
 
-      // Animation retournement et roulis au survol
-      const handleMouseEnter = () => {
-        gsap.to(img, {
-          rotateY: 360,
-          rotateZ: 180,
-          duration: 1.2,
-          ease: "power2.inOut"
-        });
-      };
-      const handleMouseLeave = () => {
-        gsap.to(img, {
-          rotateY: 0,
-          rotateZ: 0,
-          duration: 1.2,
-          ease: "power2.inOut"
-        });
-      };
-      img.addEventListener("mouseenter", handleMouseEnter);
-      img.addEventListener("mouseleave", handleMouseLeave);
-      return () => {
-        img.removeEventListener("mouseenter", handleMouseEnter);
-        img.removeEventListener("mouseleave", handleMouseLeave);
-      };
-    }
+    gsap.fromTo(
+      img,
+      { scale: 0.6, opacity: 0, rotateY: -30 },
+      { scale: 1, opacity: 1, rotateY: 0, duration: 1.4, ease: "elastic.out(1, 0.55)", delay: 0.3 }
+    );
+    gsap.to(img, { y: -14, duration: 2.8, repeat: -1, yoyo: true, ease: "sine.inOut" });
+
+    const handleMouseEnter = () => gsap.to(img, { rotateY: 360, duration: 1, ease: "power2.inOut" });
+    const handleMouseLeave = () => gsap.to(img, { rotateY: 0, duration: 0.8, ease: "power2.out" });
+    img.addEventListener("mouseenter", handleMouseEnter);
+    img.addEventListener("mouseleave", handleMouseLeave);
+    return () => {
+      img.removeEventListener("mouseenter", handleMouseEnter);
+      img.removeEventListener("mouseleave", handleMouseLeave);
+    };
   }, []);
 
   return (
     <motion.div
       initial="hidden"
       animate="visible"
-      className="flex flex-row items-center justify-center px-5 mt-50 w-full z-[20]  "
+      className="
+        relative z-[20] w-full
+        pt-[96px] pb-12
+        px-5 sm:px-8 lg:px-12
+        min-h-screen
+        flex items-center justify-center
+      "
     >
-      <div className="h-full w-full flex flex-col gap-5 justify-center m-auto text-start bg-[#18122b] text-gray-200   rounded-[12px]">
-        <motion.div
-          variants={slideInFromTop}
-          className="Welcome-box py-[8px] px-[2px] w-70 border border-[#7042f88b] opacity-[0.9]"
-        >
-          <SparklesIcon className="text-[#b49bff] mr-[40px] h-5 w-5" />
-          <h1 className="text-transparent  text-[13px] bg-clip-text bg-gradient-to-r from-purple-500 ">
-            Developeur Fullstack  Portfolio
-          </h1>
-        </motion.div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-          <div className="">
-            <motion.div
-              variants={slideInFromLeft(0.5)}
-              className="flex flex-col gap-6 mt-6 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white max-w-[600px] w-auto h-auto"
-            >
-              <span className="text-gray-400">
-                Fournir
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500" id="highlight-text">
-                  {" "}
-                  le mellieur{" "}
-                </span>
-                lexperience de mes projet
+      <div className="max-w-7xl w-full mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-10 items-center">
+
+        {/* ── COLONNE GAUCHE ── */}
+        <div className="flex flex-col gap-5 order-2 lg:order-1">
+
+          {/* Badge */}
+          <motion.div
+            variants={slideInFromTop}
+            className="inline-flex items-center gap-2 py-1.5 px-4 rounded-full border border-[#7042f860] bg-[#7042f810] backdrop-blur-sm w-fit"
+          >
+            <SparklesIcon className="h-3.5 w-3.5 text-[#b49bff] shrink-0" />
+            <span className="text-[11px] sm:text-xs font-medium text-transparent bg-clip-text bg-gradient-to-r from-[#b49bff] to-[#00e0ff] tracking-widest uppercase">
+              Développeur Fullstack · Portfolio
+            </span>
+          </motion.div>
+
+          {/* Titre */}
+          <motion.div variants={slideInFromLeft(0.4)}>
+            <h1 className="text-[28px] sm:text-4xl md:text-5xl lg:text-[2.8rem] xl:text-6xl font-extrabold leading-[1.18] text-white">
+              Concevoir des
+              <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#7042f8] via-[#a076f8] to-[#00e0ff]">
+                expériences digitales
               </span>
-            </motion.div>
-            <motion.p
-              variants={slideInFromLeft(0.8)}
-              className="text-base sm:text-lg text-gray-400 my-5 max-w-[600px]"
-              id="hero-description"
+              <br />
+              <span className="text-gray-300">qui marquent.</span>
+            </h1>
+          </motion.div>
+
+          {/* Description */}
+          <motion.p
+            variants={slideInFromLeft(0.6)}
+            className="text-sm sm:text-base md:text-[1.05rem] text-gray-400 leading-relaxed max-w-[520px]"
+            id="hero-description"
+          >
+            Ingénieur logiciel Full Stack passionné par la création d'applications web et mobiles
+            performantes. Je transforme vos idées en solutions digitales modernes et évolutives.
+          </motion.p>
+
+          {/* Tech stack pills */}
+          <motion.div variants={slideInFromLeft(0.7)} className="flex flex-wrap gap-2">
+            {techStack.map((tech) => (
+              <span
+                key={tech}
+                className="px-3 py-1 text-[11px] sm:text-xs font-semibold rounded-full bg-[#7042f815] border border-[#7042f840] text-[#a076f8] hover:border-[#7042f8] hover:bg-[#7042f825] transition-all duration-300 cursor-default"
+              >
+                {tech}
+              </span>
+            ))}
+          </motion.div>
+
+          {/* CTA buttons */}
+          <motion.div variants={slideInFromLeft(0.9)} className="flex flex-wrap gap-3 mt-1">
+            <a
+              href="/projets"
+              className="group inline-flex items-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 rounded-full font-semibold text-sm sm:text-base text-white bg-gradient-to-r from-[#7042f8] to-[#00e0ff] hover:opacity-90 hover:scale-105 transition-all duration-300 shadow-lg shadow-[#7042f840]"
             >
-              Je suis ingénieur logiciel Full Stack avec une expérience en développement de sites web, dapplications mobiles et de logiciels. Découvrez mes projets et mes compétences.
-            </motion.p>
-            <motion.a
-              variants={slideInFromLeft(1)}
-              className="py-2 button-primary text-center text-white cursor-pointer rounded-lg max-w-[200px]"
+              Voir mes projets
+              <ArrowRightIcon className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+            </a>
+            <a
+              href="/cv.pdf"
+              download
+              className="inline-flex items-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 rounded-full font-semibold text-sm sm:text-base text-gray-300 border border-[#7042f860] bg-[#7042f810] hover:bg-[#7042f825] hover:text-white hover:border-[#7042f8] transition-all duration-300"
             >
-              Apprendre encore plus!
-            </motion.a>
-          </div>
-          <div className="flex justify-center items-center" id="hero-image">
-            <motion.div
-              variants={slideInFromRight(0.8)}
-              className="relative flex justify-center items-center"
-            >
-              {/* Bordure colorée animée autour de l'image */}
-              <span className="absolute w-[40vw] h-[40vw] max-w-[320px] max-h-[320px] min-w-[120px] min-h-[120px] rounded-full bg-gradient-to-r from-purple-500 via-cyan-400 to-pink-500 animate-spin-slow z-0"></span>
-              <span className="absolute w-[40vw] h-[40vw] max-w-[320px] max-h-[320px] min-w-[120px] min-h-[120px] rounded-full bg-gradient-to-r from-purple-500 via-cyan-400 to-pink-500 opacity-40 blur-xl animate-pulse z-0"></span>
+              <ArrowDownTrayIcon className="w-4 h-4" />
+              Télécharger CV
+            </a>
+          </motion.div>
+
+          {/* Stats */}
+          <motion.div
+            variants={slideInFromLeft(1.1)}
+            className="flex gap-6 sm:gap-10 mt-2 pt-5 border-t border-[#7042f820]"
+          >
+            {[
+              { value: "3+", label: "Années d'expérience" },
+              { value: "20+", label: "Projets livrés" },
+              { value: "15+", label: "Clients satisfaits" },
+            ].map((stat) => (
+              <div key={stat.label} className="flex flex-col gap-0.5">
+                <span className="text-xl sm:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#7042f8] to-[#00e0ff]">
+                  {stat.value}
+                </span>
+                <span className="text-[10px] sm:text-xs text-gray-500 leading-tight">{stat.label}</span>
+              </div>
+            ))}
+          </motion.div>
+        </div>
+
+        {/* ── COLONNE DROITE — image ── */}
+        <div className="flex justify-center items-center order-1 lg:order-2">
+          <motion.div
+            variants={slideInFromRight(0.6)}
+            className="relative flex justify-center items-center"
+            /* taille du "canvas" autour de l'image — s'adapte au viewport */
+            style={{
+              width: "clamp(220px, 55vw, 360px)",
+              height: "clamp(220px, 55vw, 360px)",
+            }}
+          >
+            {/* Rings décoratifs */}
+            <span className="absolute inset-0 rounded-full border border-[#7042f830] animate-spin-slow" />
+            <span className="absolute inset-[18px] rounded-full border border-[#00e0ff20]" />
+
+            {/* Glow */}
+            <span className="absolute inset-[30px] rounded-full bg-gradient-to-br from-[#7042f840] to-[#00e0ff20] blur-2xl opacity-70" />
+
+            {/* Image */}
+            <div className="relative z-10">
+              <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-[#7042f8] via-[#a076f8] to-[#00e0ff] opacity-75 blur-sm" />
               <Image
                 src="/statut.jpg"
-                alt="work icons"
-                width={320}
-                height={320}
-                id="hero-image"
+                alt="Profile"
+                width={260}
+                height={260}
                 ref={heroImgRef}
-                className="relative z-10 w-[35vw] h-[35vw] max-w-[280px] max-h-[280px] min-w-[100px] min-h-[100px] rounded-full object-cover border-4 border-white"
                 priority
+                className="relative rounded-full object-cover border-4 border-[#030014] cursor-pointer"
+                style={{
+                  width: "clamp(150px, 40vw, 240px)",
+                  height: "clamp(150px, 40vw, 240px)",
+                }}
               />
-            </motion.div>
-          </div>
+            </div>
+
+            {/* Badge disponibilité */}
+            <div className="absolute top-0 -right-1 sm:-right-3 flex items-center gap-1.5 bg-[#0d0d1f] border border-[#7042f840] rounded-xl px-2.5 py-1.5 shadow-lg backdrop-blur-md z-20">
+              <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse shrink-0" />
+              <span className="text-[10px] sm:text-xs text-gray-300 font-medium whitespace-nowrap">Disponible</span>
+            </div>
+
+            {/* Badge Full Stack */}
+            <div className="absolute bottom-0 -left-1 sm:-left-3 flex items-center gap-1.5 bg-[#0d0d1f] border border-[#7042f840] rounded-xl px-2.5 py-1.5 shadow-lg backdrop-blur-md z-20">
+              <span className="text-sm leading-none">⚡</span>
+              <span className="text-[10px] sm:text-xs text-gray-300 font-medium whitespace-nowrap">Full Stack Dev</span>
+            </div>
+          </motion.div>
         </div>
+
       </div>
     </motion.div>
   );
 };
 
 export default HeroContent;
-
-
-
