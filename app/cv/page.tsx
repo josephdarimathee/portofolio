@@ -1,17 +1,11 @@
 "use client";
+
 import React, { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone, faEnvelope, faLocationDot, faDownload } from "@fortawesome/free-solid-svg-icons";
-import type { Metadata } from 'next'
-
-export const metadata: Metadata = {
-  alternates: {
-    canonical: '/cv',
-  },
-}
 const fadeUp = (delay = 0) => ({
   hidden: { opacity: 0, y: 24 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, delay } },

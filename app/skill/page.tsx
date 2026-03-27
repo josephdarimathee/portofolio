@@ -1,13 +1,8 @@
+"use client";
+
 import React, { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import type { Metadata } from 'next'
-
-export const metadata: Metadata = {
-  alternates: {
-    canonical: '/skill',
-  },
-}
 const competencesProgrammation = [
   { nom: "JavaScript (ES6+)", img: "/js.png", level: 95, color: "#f7df1e" },
   { nom: "TypeScript", img: "/ts.png", level: 90, color: "#3178c6" },
