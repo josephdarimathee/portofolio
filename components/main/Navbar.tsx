@@ -175,7 +175,7 @@ const Navbar = () => {
           <div className="flex items-center gap-2 mb-8 pb-6 border-b border-[#3b82f615]">
             <div className="relative">
               <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#3b82f6] to-[#2563eb] blur-sm opacity-50" />
-              <Image src="/logo.png" alt="logo" width={32} height={32} className="relative rounded-full border-2 border-[#3b82f6]" />
+              <Image src="/logo.png" alt="logo" width={52} height={32} className="relative rounded-full border-2 border-[#3b82f6]" />
             </div>
             <span className="font-extrabold text-sm text-white font-mono">
               Web<span className="text-[#3b82f6]">Nova</span>
