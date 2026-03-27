@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useRef } from "react";
-
 import { motion } from "framer-motion";
 import { slideInFromTop } from "@/utils/motion";
 import Image from "next/image";
@@ -10,64 +9,84 @@ const Encryption = () => {
 
   useEffect(() => {
     if (videoRef.current) {
-      // Animation continue de flottement sur la vidéo
-      import('gsap').then(({ default: gsap }) => {
+      import("gsap").then(({ default: gsap }) => {
         gsap.to(videoRef.current, {
-          y: -30,
-          duration: 1.2,
+          y: -25,
+          duration: 1.5,
           repeat: -1,
           yoyo: true,
-          ease: "sine.inOut"
+          ease: "sine.inOut",
         });
       });
     }
   }, []);
 
   return (
-    <div className="flex flex-row relative items-center justify-center min-h-screen w-full h-full ">
-      <div className="absolute w-auto h-auto top-0 z-[5] ">
+    <div className="relative z-20 flex flex-row items-center justify-center min-h-screen w-full h-full bg-[#090d1a] overflow-hidden">
+
+      {/* Fond décoratif */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vw] rounded-full bg-[#3b82f6] opacity-[0.04] blur-[150px]" />
+        <div
+          className="absolute inset-0 opacity-[0.02]"
+          style={{
+            backgroundImage: `radial-gradient(circle, #3b82f6 1px, transparent 1px)`,
+            backgroundSize: "40px 40px",
+          }}
+        />
+      </div>
+
+      {/* Titre */}
+      <div className="absolute w-auto h-auto top-10 z-[5] text-center px-4">
         <motion.div
           variants={slideInFromTop}
-          className="text-[40px] font-medium text-center text-gray-200"
+          className="text-[36px] sm:text-[48px] font-extrabold text-white"
         >
           Performance
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">
-            {" "}
-            Et{" "}
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3b82f6] to-[#2563eb]">
+            {" & "}
           </span>
-          Securite
+          Sécurité
         </motion.div>
       </div>
 
-      <div className="flex flex-col items-center justify-center translate-y-[-50px] absolute z-[20] w-auto h-auto">
-        <div className="flex flex-col items-center group cursor-pointer w-auto h-auto">
+      {/* Lock icon central */}
+      <div className="flex flex-col items-center justify-center translate-y-[-40px] absolute z-[20] w-auto h-auto">
+        <div className="flex flex-col items-center group cursor-pointer w-auto h-auto mb-6">
           <Image
             src="/LockTop.png"
             alt="Lock top"
             width={50}
             height={50}
-            className="w-[50px] translate-y-5 transition-all duration-200 group-hover:translate-y-11"
+            className="w-[50px] translate-y-5 transition-all duration-300 group-hover:translate-y-11"
           />
           <Image
             src="/LockMain.png"
             alt="Lock Main"
             width={70}
             height={70}
-            className=" z-10"
+            className="z-10"
           />
         </div>
 
-        <div className="Welcome-box px-[15px] py-[4px] z-[20] brder my-[20px] border-[#7042f88b] opacity-[0.9]">
-          <h1 className="Welcome-text text-[12px]">Encryption</h1>
-        </div>
-      </div>
-      <div className="absolute z-[20] bottom-[10px] px-[5px]">
-        <div className="cursive text-[20px] font-medium text-center text-gray-300">
-          Securisez vos donnees avec un chiffrement de pointe
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#3b82f640] bg-[#3b82f610] my-4">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#3b82f6] animate-pulse" />
+          <span className="text-xs font-bold font-mono text-[#3b82f6] tracking-widest uppercase">
+            Encryption
+          </span>
         </div>
       </div>
 
-      <div className="w-full flex items-start justify-center absolute">
+      {/* Texte bas */}
+      <div className="absolute z-[20] bottom-10 px-6 text-center">
+        <p className="text-lg sm:text-xl font-medium text-gray-300">
+          Sécurisez vos données avec un chiffrement de pointe
+        </p>
+        <p className="text-sm text-gray-600 mt-2">AES-256 · TLS 1.3 · Zero Knowledge</p>
+      </div>
+
+      {/* Vidéo */}
+      <div className="w-full flex items-start justify-center absolute z-[10]">
         <video
           ref={videoRef}
           loop
@@ -75,7 +94,7 @@ const Encryption = () => {
           autoPlay
           playsInline
           preload="false"
-          className="w-[65%] h-auto border-10 rounded-full "
+          className="w-[65%] h-auto rounded-full opacity-80"
           src="/encryption.webm/"
         />
       </div>

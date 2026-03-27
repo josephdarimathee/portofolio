@@ -2,32 +2,36 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { slideInFromLeft, slideInFromRight, slideInFromTop } from '@/utils/motion'
-import { SparklesIcon } from '@heroicons/react/24/solid'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faStar } from '@fortawesome/free-solid-svg-icons'
 
 const SkillText = () => {
   return (
-    <div className='w-full h-auto flex flex-col items-center justify-center'>
+    <div className='w-full h-auto flex flex-col items-center justify-center mb-12'>
       <motion.div
         variants={slideInFromTop}
-        className="Welcome-box py-[8px] px-[7px] border border-[#7042f88b] opacity-[0.9]"
+        className="inline-flex items-center gap-2 py-1.5 px-4 rounded-full border border-[#3b82f640] bg-[#3b82f610] mb-4"
       >
-        <SparklesIcon className="text-[#b49bff] mr-[10px] h-5 w-5" />
-        <h1 className="Welcome-text  text-[13px] text-transparent  text-[13px] bg-clip-text bg-gradient-to-r from-purple-500">
-          Pensez mieux avec Next js
-        </h1>
+        <FontAwesomeIcon icon={faStar} className="text-[#3b82f6] h-4 w-4" />
+        <span className="text-[11px] font-bold text-[#3b82f6] tracking-widest uppercase font-mono">
+          
+        </span>
       </motion.div>
-      <motion.div
+
+      <motion.h2
         variants={slideInFromLeft(0.5)}
-        className='text-[30px]  font-medium mt-[10px] text-center mb-[15px] text-transparent  text-[13px] bg-clip-text bg-gradient-to-r from-purple-500'
+        className='text-3xl sm:text-4xl font-extrabold mt-2 text-center mb-4 text-white'
       >
-        creer des applications avec des technologies modernes
-      </motion.div>
-      <motion.div
+        Technologies que
+        <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3b82f6] to-[#2563eb]"> j utilise</span>
+      </motion.h2>
+
+      <motion.p
         variants={slideInFromRight(0.5)}
-        className='cursive text-[20px] text-gray-200 mb-10 mt-[10px] text-center'
+        className='text-sm text-gray-500 max-w-xl text-center leading-relaxed'
       >
-        Ne manquez jamais une tache, une echeance ou une idee.
-      </motion.div>
+        Un arsenal de technologies modernes pour concevoir des applications web et mobiles performantes.
+      </motion.p>
     </div>
   )
 }

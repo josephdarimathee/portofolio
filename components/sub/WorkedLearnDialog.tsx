@@ -1,114 +1,141 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUpRightFromSquare, faX, faGlobe, faStar } from '@fortawesome/free-solid-svg-icons';
 
 const WorkedLearnDialog: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     useEffect(() => {
-        // Définir un timer pour 5 minutes (300000 ms)
         const timer = setTimeout(() => {
             setIsOpen(true);
         }, 300000);
-
-        // Nettoyer le timer si le composant est démonté
         return () => clearTimeout(timer);
     }, []);
 
-    const handleClose = () => {
-        setIsOpen(false);
-    };
+    const handleClose = () => setIsOpen(false);
 
     const handleVisitSite = () => {
         window.open('https://site-vitrine-jet.vercel.app/', '_blank');
         setIsOpen(false);
     };
 
-    // Variants d'animation pour le backdrop
-    const backdropVariants = {
-        hidden: { opacity: 0 },
-        visible: { opacity: 1 }
-    };
-
-    // Variants d'animation pour la boîte de dialogue
-    const dialogVariants = {
-        hidden: {
-            y: -50,
-            opacity: 0,
-            scale: 0.8
-        },
-        visible: {
-            y: 0,
-            opacity: 1,
-            scale: 1,
-            transition: {
-                type: "spring" as const,
-                stiffness: 300,
-                damping: 20
-            }
-        },
-        exit: {
-            y: 50,
-            opacity: 0,
-            scale: 0.8,
-            transition: {
-                duration: 0.2
-            }
-        }
-    };
-
     return (
         <AnimatePresence>
             {isOpen && (
-                <motion.div
-                    className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-4"
-                    variants={backdropVariants}
-                    initial="hidden"
-                    animate="visible"
-                    exit="hidden"
-                    onClick={handleClose}
-                >
+                <>
+                    {/* Backdrop */}
                     <motion.div
-                        className="bg-gradient-to-br from-[#0a0a2a] to-[#1a1a4a] border border-[#3b82f6] rounded-2xl p-6 max-w-md w-full shadow-2xl"
-                        variants={dialogVariants}
-                        initial="hidden"
-                        animate="visible"
-                        exit="exit"
-                        onClick={(e) => e.stopPropagation()}
-                    >
-                        <div className="flex justify-between items-start mb-4">
-                            <h2 className="text-2xl font-bold text-white bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-                                Découvrez WorkedLearn
-                            </h2>
-                            <button
-                                onClick={handleClose}
-                                className="text-gray-400 hover:text-white transition-colors"
-                            >
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                                </svg>
-                            </button>
-                        </div>
-                        <p className="text-gray-300 mb-6 text-lg">
-                            Visitez mon  site vitrine pour découvrir mes services et réalisations.
-                        </p>
-                        <div className="flex flex-col sm:flex-row justify-end space-y-4 sm:space-y-0 sm:space-x-4">
-                            <button
-                                onClick={handleClose}
-                                className="px-6 py-3 text-gray-300 hover:text-white transition-colors rounded-lg border border-gray-600 hover:border-gray-400"
-                            >
-                                Fermer
-                            </button>
-                            <button
-                                onClick={handleVisitSite}
-                                className="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all transform hover:scale-105 shadow-lg"
-                            
-                            >
-                                Visiter le site
-                            </button>
-                        </div>
-                    </motion.div>
-                </motion.div>
+                        className="fixed inset-0 z-50 bg-[#090d1a]/80 backdrop-blur-sm"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.25 }}
+                        onClick={handleClose}
+                    />
+
+                    {/* Dialog centré — pointer-events-none sur le wrapper, auto sur la card */}
+                    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none">
+                        <motion.div
+                            className="relative w-full max-w-md pointer-events-auto"
+                            initial={{ opacity: 0, y: 24, scale: 0.95 }}
+                            animate={{ opacity: 1, y: 0, scale: 1 }}
+                            exit={{ opacity: 0, y: 16, scale: 0.95 }}
+                            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            {/* Halo derrière la card */}
+                            <div className="absolute -inset-4 rounded-3xl bg-[#3b82f6] opacity-[0.06] blur-[60px] pointer-events-none" />
+
+                            {/* Card */}
+                            <div className="relative bg-[#0d1220] border border-[#1e2a4a] rounded-2xl overflow-hidden shadow-2xl">
+
+                                {/* Ligne top */}
+                                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#3b82f6] to-transparent pointer-events-none" />
+
+                                {/* Déco intérieure */}
+                                <div className="absolute top-0 right-0 w-40 h-40 rounded-full bg-[#3b82f6] opacity-[0.04] blur-[60px] pointer-events-none" />
+                                <div
+                                    className="absolute inset-0 opacity-[0.02] pointer-events-none"
+                                    style={{
+                                        backgroundImage: 'radial-gradient(circle, #3b82f6 1px, transparent 1px)',
+                                        backgroundSize: '32px 32px',
+                                    }}
+                                />
+
+                                <div className="relative z-10 p-7">
+
+                                    {/* Header */}
+                                    <div className="flex items-start justify-between mb-6">
+                                        <div className="flex items-center gap-3">
+                                            <div className="w-11 h-11 rounded-xl bg-[#3b82f610] border border-[#3b82f625] flex items-center justify-center shrink-0">
+                                                <FontAwesomeIcon icon={faGlobe} className="w-5 h-5 text-[#3b82f6]" />
+                                            </div>
+                                            <div>
+                                                <div className="inline-flex items-center gap-1.5 py-1 px-2.5 rounded-full border border-[#3b82f640] bg-[#3b82f610] mb-1">
+                                                    <FontAwesomeIcon icon={faStar} className="w-3 h-3 text-[#3b82f6]" />
+                                                    <span className="text-[10px] font-bold text-[#3b82f6] tracking-widest uppercase font-mono">
+                                                        Site vitrine
+                                                    </span>
+                                                </div>
+                                                <h2 className="text-lg font-black text-white leading-tight">
+                                                    Découvrez{' '}
+                                                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3b82f6] to-[#60a5fa]">
+                                                        WorkedLearn
+                                                    </span>
+                                                </h2>
+                                            </div>
+                                        </div>
+
+                                        <button
+                                            onClick={handleClose}
+                                            className="w-8 h-8 rounded-lg flex items-center justify-center text-gray-500 hover:text-white hover:bg-[#ffffff10] transition-all duration-200 shrink-0 ml-2"
+                                        >
+                                            <FontAwesomeIcon icon={faX} className="w-4 h-4" />
+                                        </button>
+                                    </div>
+
+                                    {/* Séparateur */}
+                                    <div className="h-px bg-gradient-to-r from-transparent via-[#3b82f620] to-transparent mb-5" />
+
+                                    {/* Description */}
+                                    <p className="text-sm text-gray-400 leading-relaxed mb-6">
+                                        Visitez mon site vitrine pour découvrir mes{' '}
+                                        <span className="text-gray-200 font-semibold">services</span> et{' '}
+                                        <span className="text-gray-200 font-semibold">réalisations</span>.
+                                        Une expérience pensée pour vous donner envie de collaborer.
+                                    </p>
+
+                                    {/* URL live */}
+                                    <div className="flex items-center gap-3 mb-6 p-3 rounded-xl bg-[#0a0f1e] border border-[#1e2a4a]">
+                                        <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+                                        <span className="text-xs text-gray-400 font-mono truncate">site-vitrine-jet.vercel.app</span>
+                                        <span className="ml-auto text-[10px] font-bold text-[#3b82f6] font-mono uppercase tracking-widest shrink-0">Live ↗</span>
+                                    </div>
+
+                                    {/* Actions */}
+                                    <div className="flex gap-3">
+                                        <button
+                                            onClick={handleClose}
+                                            className="flex-1 px-4 py-2.5 rounded-xl text-sm font-bold text-gray-400 border border-[#1e2a4a] hover:border-[#3b82f640] hover:text-white bg-transparent transition-all duration-200 font-mono"
+                                        >
+                                            Plus tard
+                                        </button>
+                                        <button
+                                            onClick={handleVisitSite}
+                                            className="flex-1 group inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm font-black text-white bg-gradient-to-r from-[#3b82f6] to-[#2563eb] hover:opacity-90 transition-all duration-300 shadow-lg shadow-[#3b82f630]"
+                                        >
+                                            Visiter le site
+                                            <FontAwesomeIcon icon={faUpRightFromSquare} className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </motion.div>
+                    </div>
+                </>
             )}
         </AnimatePresence>
     );

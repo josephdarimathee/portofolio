@@ -14,25 +14,37 @@ const Hero = () => {
         muted
         loop
         playsInline
-        className="absolute inset-0 w-full h-full object-cover z-[0] opacity-25 rotate-180"
+        className="absolute inset-0 w-full h-full object-cover z-[0] opacity-10 rotate-180"
       >
         <source src="/video_black.mp4" type="video/mp4" />
       </video>
 
-      {/* Dégradés de bord */}
-      <div className="absolute inset-0 z-[1] bg-gradient-to-b from-[#030014] via-transparent to-[#030014]" />
-      <div className="absolute inset-0 z-[1] bg-gradient-to-r from-[#030014] via-transparent to-[#030014] opacity-60" />
+      {/* Fond sombre profond */}
+      <div className="absolute inset-0 z-[0] bg-[#090d1a]" />
 
-      {/* Orbes lumineuses */}
-      <div className="absolute top-1/3 left-1/4 w-[40vw] max-w-[500px] h-[40vw] max-h-[500px] rounded-full bg-[#7042f8] opacity-[0.07] blur-[120px] z-[1] animate-pulse" />
-      <div className="absolute bottom-1/4 right-1/4 w-[30vw] max-w-[400px] h-[30vw] max-h-[400px] rounded-full bg-[#00e0ff] opacity-[0.05] blur-[100px] z-[1]" />
+      {/* Dégradés directionnels */}
+      <div className="absolute inset-0 z-[1] bg-gradient-to-b from-[#090d1a] via-transparent to-[#090d1a]" />
+      <div className="absolute inset-0 z-[1] bg-gradient-to-r from-[#090d1a] via-transparent to-[#090d1a] opacity-50" />
 
-      {/* Grille décorative */}
+      {/* Orbe verte principale */}
+      <div className="absolute top-1/4 right-1/3 w-[50vw] max-w-[600px] h-[50vw] max-h-[600px] rounded-full bg-[#3b82f6] opacity-[0.04] blur-[140px] z-[1]" />
+      <div className="absolute bottom-1/3 left-1/4 w-[35vw] max-w-[400px] h-[35vw] max-h-[400px] rounded-full bg-[#2563eb] opacity-[0.06] blur-[100px] z-[1]" />
+
+      {/* Grille décorative subtile */}
       <div
-        className="absolute inset-0 z-[1] opacity-[0.025]"
+        className="absolute inset-0 z-[1] opacity-[0.015]"
         style={{
-          backgroundImage: `linear-gradient(#7042f8 1px, transparent 1px), linear-gradient(90deg, #7042f8 1px, transparent 1px)`,
-          backgroundSize: "60px 60px",
+          backgroundImage: `linear-gradient(#3b82f6 1px, transparent 1px), linear-gradient(90deg, #3b82f6 1px, transparent 1px)`,
+          backgroundSize: "80px 80px",
+        }}
+      />
+
+      {/* Points décoratifs */}
+      <div
+        className="absolute inset-0 z-[1] opacity-[0.08]"
+        style={{
+          backgroundImage: `radial-gradient(circle, #3b82f6 1px, transparent 1px)`,
+          backgroundSize: "40px 40px",
         }}
       />
 

@@ -82,19 +82,27 @@ export const Skill_data = [
 
 ];
 
-export const Socials = [
+export type SocialLink = {
+  name: string;
+  src: string;
+  href?: string;
+};
+
+export const Socials: SocialLink[] = [
   {
     name: "Discord",
     src: "/instagram.svg",
-
+    href: "#",
   },
   {
     name: "Facebook",
     src: "/facebook.svg",
+    href: "#",
   },
   {
     name: "Instagram",
     src: "/discord.svg",
+    href: "#",
   },
 ];
 

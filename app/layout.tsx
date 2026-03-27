@@ -7,6 +7,9 @@ import StarsCanvas from "../components/main/StarBackground";
 import Navbar from "../components/main/Navbar";
 import Footer from "../components/main/Footer";
 import ClientWorkedLearnDialog from "../components/sub/ClientWorkedLearnDialog";
+import { config } from '@fortawesome/fontawesome-svg-core'
+import '@fortawesome/fontawesome-svg-core/styles.css'
+config.autoAddCss = false // Empêche l'injection automatique du CSS
 
 const inter = Inter({ subsets: ["latin"] });
 

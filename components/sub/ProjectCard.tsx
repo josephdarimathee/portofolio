@@ -25,72 +25,103 @@ const ProjectCard = ({
   titleClassName = "",
   descriptionClassName = "",
   technologiesClassName = "",
-  infosClassName = ""
+  infosClassName = "",
 }: Props) => {
   const cardRef = useRef<HTMLDivElement>(null);
-
 
   useLayoutEffect(() => {
     if (typeof window === "undefined") return;
     const el = cardRef.current;
     if (!el) return;
 
-    // Animation GSAP fade-in au scroll (apparition responsive)
-    const observer = new window.IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const h1 = el.querySelector("h1");
-          const desc = el.querySelector("p");
-          const infos = el.querySelector(".text-sm");
-          if (h1) {
-            gsap.fromTo(h1, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" });
-          }
-          if (desc) {
-            gsap.fromTo(desc, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.8, delay: 0.15, ease: "power2.out" });
-          }
-          if (infos) {
-            gsap.fromTo(infos, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.8, delay: 0.3, ease: "power2.out" });
-          }
-        }
+    const onEnter = () => {
+      gsap.to(el, {
+        y: -6,
+        boxShadow: "0 20px 60px rgba(0,255,136,0.15)",
+        borderColor: "#3b82f640",
+        duration: 0.35,
+        ease: "power2.out",
       });
-    }, { threshold: 0.2 });
-    observer.observe(el);
+    };
+    const onLeave = () => {
+      gsap.to(el, {
+        y: 0,
+        boxShadow: "0 4px 20px rgba(0,0,0,0.4)",
+        borderColor: "#1a2040",
+        duration: 0.4,
+        ease: "power2.out",
+      });
+    };
+    el.addEventListener("mouseenter", onEnter);
+    el.addEventListener("mouseleave", onLeave);
     return () => {
-      observer.disconnect();
+      el.removeEventListener("mouseenter", onEnter);
+      el.removeEventListener("mouseleave", onLeave);
     };
   }, []);
 
   return (
-    <div ref={cardRef} className="relative overflow-hidden rounded-lg shadow-lg border border-[#2A0E61] bg-[#18122b] flex flex-col justify-between h-full">
-      <Image
-        src={src}
-        alt={title}
-        width={1000}
-        height={1000}
-        className="w-full object-contain"
-      />
-      <div className="relative p-4 flex flex-col gap-2 flex-1">
-        <h1 className={`text-2xl font-semibold text-white ${titleClassName}`}>{title}</h1>
-        <p className={`mt-2 text-gray-300 ${descriptionClassName}`}>{description}</p>
-        {infos && <p className={`text-sm text-gray-400 italic ${infosClassName}`}>{infos}</p>}
+    <div
+      ref={cardRef}
+      className="relative overflow-hidden rounded-xl border border-[#1a2040] bg-[#0d1220] flex flex-col h-full group cursor-pointer"
+      style={{ boxShadow: "0 4px 20px rgba(0,0,0,0.4)" }}
+    >
+      {/* Image avec overlay gradient */}
+      <div className="relative overflow-hidden">
+        <Image
+          src={src}
+          alt={title}
+          width={800}
+          height={500}
+          className="w-full object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+        {/* Overlay gradient bas */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0d1220] via-transparent to-transparent opacity-80" />
+
+        {/* Badge technologie principale */}
+        {technologies && technologies[0] && (
+          <div className="absolute top-3 right-3 px-2 py-1 rounded-md bg-[#0d1220]/90 border border-[#3b82f630] backdrop-blur-sm">
+            <span className="text-[10px] font-bold font-mono text-[#3b82f6]">{technologies[0]}</span>
+          </div>
+        )}
+      </div>
+
+      {/* Contenu */}
+      <div className="p-5 flex flex-col gap-3 flex-1">
+        <h3 className={`text-lg font-bold text-white leading-tight ${titleClassName}`}>{title}</h3>
+        <p className={`text-sm text-gray-400 leading-relaxed ${descriptionClassName}`}>{description}</p>
+
+        {infos && (
+          <p className={`text-xs text-gray-600 italic ${infosClassName}`}>{infos}</p>
+        )}
+
         {technologies && (
-          <div className={`flex flex-wrap gap-2 mt-2 ${technologiesClassName}`}>
+          <div className={`flex flex-wrap gap-1.5 mt-1 ${technologiesClassName}`}>
             {technologies.map((tech, idx) => (
-              <span key={idx} className="px-2 py-1 bg-[#7042f8]/20 text-[#7042f8] rounded text-xs font-bold">{tech}</span>
+              <span
+                key={idx}
+                className="px-2 py-0.5 bg-[#3b82f610] text-[#3b82f6] border border-[#3b82f625] rounded text-[10px] font-bold font-mono"
+              >
+                {tech}
+              </span>
             ))}
           </div>
         )}
+
         {siteUrl && (
           <a
             href={siteUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-4 inline-block bg-[#7042f8] hover:bg-[#a076f8] text-white font-bold py-2 px-4 rounded transition-all duration-200 shadow-md"
+            className="mt-auto inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#3b82f6] hover:bg-[#2563eb] text-black font-bold text-sm transition-all duration-200 shadow-md w-fit pointer-events-auto"
           >
-            Visiter le site
+            Visiter →
           </a>
         )}
       </div>
+
+      {/* Barre décorative en bas au hover */}
+      <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#3b82f6] to-[#2563eb] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
     </div>
   );
 };

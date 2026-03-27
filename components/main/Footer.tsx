@@ -1,74 +1,115 @@
+'use client';
 import React from "react";
-import {
-    RxDiscordLogo,
-    RxGithubLogo,
-    RxInstagramLogo,
-    RxTwitterLogo,
-    RxLinkedinLogo,
-} from "react-icons/rx";
-
-import { FaYoutube } from "react-icons/fa";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faYoutube, faGithub, faLinkedin, faTwitter, faInstagram, faDiscord } from '@fortawesome/free-brands-svg-icons';
+import Image from "next/image";
+import Link from "next/link";
 
 const Footer = () => {
-    return (
-        <div className="w-full h-full bg-transparent text-gray-200 shadow-lg p-[15px] ">
-            <div className="w-full flex flex-col items-center justify-center m-auto">
-                <div className="w-full h-full flex flex-row items-center justify-around flex-wrap">
+  return (
+    <footer className="relative w-full bg-[#090d1a] border-t border-[#3b82f615] overflow-hidden">
 
+      {/* Fond décoratif */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[50vw] h-[20vh] rounded-full bg-[#3b82f6] opacity-[0.04] blur-[80px] pointer-events-none" />
 
-                    <div className="min-w-[200px] h-auto flex flex-col items-center justify-start">
-                        <div className="font-bold text-[16px]">Community</div>
-                        <a href="https://www.youtube.com/@votre_chaine" target="_blank" rel="noopener noreferrer" className="flex flex-row items-center my-[15px] cursor-pointer hover:text-[#ff0000] transition-colors">
-                            <FaYoutube />
-                            <span className="text-[15px] ml-[6px]">Youtube</span>
-                        </a>
-                        <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="flex flex-row items-center my-[15px] cursor-pointer hover:text-[#7042f8] transition-colors">
-                            <RxGithubLogo />
-                            <span className="text-[15px] ml-[6px]">Github</span>
-                        </a>
-                        <a href="https://discord.com/invite/votre_invite" target="_blank" rel="noopener noreferrer" className="flex flex-row items-center my-[15px] cursor-pointer hover:text-[#5865f2] transition-colors">
-                            <RxDiscordLogo />
-                            <span className="text-[15px] ml-[6px]">Discord</span>
-                        </a>
-                    </div>
-                    <div className="min-w-[200px] h-auto flex flex-col items-center justify-start">
-                        <div className="font-bold text-[16px]">Social Media</div>
-                        <a href="https://instagram.com/votre_instagram" target="_blank" rel="noopener noreferrer" className="flex flex-row items-center my-[15px] cursor-pointer hover:text-[#e1306c] transition-colors">
-                            <RxInstagramLogo />
-                            <span className="text-[15px] ml-[6px]">Instagram</span>
-                        </a>
-                        <a href="https://twitter.com/votre_twitter" target="_blank" rel="noopener noreferrer" className="flex flex-row items-center my-[15px] cursor-pointer hover:text-[#1da1f2] transition-colors">
-                            <RxTwitterLogo />
-                            <span className="text-[15px] ml-[6px]">Twitter</span>
-                        </a>
-                        <a href="https://linkedin.com/in/votre_linkedin" target="_blank" rel="noopener noreferrer" className="flex flex-row items-center my-[15px] cursor-pointer hover:text-[#0077b5] transition-colors">
-                            <RxLinkedinLogo />
-                            <span className="text-[15px] ml-[6px]">Linkedin</span>
-                        </a>
-                    </div>
-                    <div className="min-w-[200px] h-auto flex flex-col items-center justify-start">
-                        <div className="font-bold text-[16px]">About</div>
-                        <p className="flex flex-row items-center my-[15px] cursor-pointer">
+      <div className="relative z-20 max-w-6xl mx-auto px-6 py-16">
 
-                            <span className="text-[15px] ml-[6px]">Become Sponsor</span>
-                        </p>
-                        <p className="flex flex-row items-center my-[15px] cursor-pointer">
+        {/* Top row : logo + nav */}
+        <div className="flex flex-col md:flex-row items-start justify-between gap-12 mb-14">
 
-                            <span className="text-[15px] ml-[6px]">Learning about me</span>
-                        </p>
-                        <p className="flex flex-row items-center my-[15px] cursor-pointer">
-
-                            <span className="text-[15px] ml-[6px]">josephdarimathee530@gmail.com</span>
-                        </p>
-                    </div>
-                </div>
-
-                <div className="mb-[20px] text-[15px] text-center">
-                    &copy; WebChain Dev 2025 Inc. All rights reserved
-                </div>
+          {/* Brand */}
+          <div className="flex flex-col gap-4 max-w-xs">
+            <div className="flex items-center gap-2">
+              <Image src="/logo.png" alt="logo" width={36} height={36} className="rounded-full border-2 border-[#3b82f6]" />
+              <span className="font-extrabold text-lg text-white font-mono">
+                Web<span className="text-[#3b82f6]">Nova</span>
+              </span>
             </div>
-        </div>
-    )
-}
+            <p className="text-sm text-gray-500 leading-relaxed">
+              Développeur Fullstack passionné, créant des expériences digitales modernes et performantes.
+            </p>
+            <div className="flex gap-2 mt-1 z-50 pointer-events-auto">
+              {[
+                { href: "https://github.com", icon: faGithub, color: "hover:text-white" },
+                { href: "https://linkedin.com/in/votre_linkedin", icon: faLinkedin, color: "hover:text-[#0077b5]" },
+                { href: "https://twitter.com/votre_twitter", icon: faTwitter, color: "hover:text-[#1da1f2]" },
+                { href: "https://instagram.com/votre_instagram", icon: faInstagram, color: "hover:text-[#e1306c]" },
+              ].map((s, i) => (
+                <a
+                  key={i}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`w-8 h-8 flex items-center justify-center rounded-lg bg-[#ffffff05] border border-[#ffffff10] text-gray-500 ${s.color} hover:border-[#3b82f630] transition-all duration-300 text-base pointer-events-auto`}
+                >
+                  <FontAwesomeIcon icon={s.icon} />
+                </a>
+              ))}
+            </div>
+          </div>
 
-export default Footer
+          {/* Links columns */}
+          <div className="flex flex-wrap gap-12">
+            <div className="flex flex-col gap-3 pointer-events-auto">
+              <h4 className="text-[11px] font-bold text-[#3b82f6] tracking-widest uppercase font-mono mb-1">Community</h4>
+              {[
+                { href: "https://www.youtube.com/@votre_chaine", icon: faYoutube, label: "Youtube", color: "hover:text-[#ff0000]" },
+                { href: "https://github.com", icon: faGithub, label: "Github", color: "hover:text-white" },
+                { href: "https://discord.com/invite/votre_invite", icon: faDiscord, label: "Discord", color: "hover:text-[#5865f2]" },
+              ].map((l, i) => (
+                <a key={i} href={l.href} target="_blank" rel="noopener noreferrer"
+                  className={`flex items-center gap-2 text-sm text-gray-500 ${l.color} transition-colors duration-200 pointer-events-auto`}>
+                  <FontAwesomeIcon icon={l.icon} />
+                  <span>{l.label}</span>
+                </a>
+              ))}
+            </div>
+
+            <div className="flex flex-col gap-3 pointer-events-auto">
+              <h4 className="text-[11px] font-bold text-[#3b82f6] tracking-widest uppercase font-mono mb-1">Navigation</h4>
+              {[
+                { label: "Accueil", href: "/" },
+                { label: "À propos", href: "/about" },
+                { label: "Compétences", href: "/skill" },
+                { label: "Projets", href: "/projets" },
+                { label: "Services", href: "/service" },
+              ].map((link, i) => (
+                <Link key={i} href={link.href} className="text-sm text-gray-500 hover:text-[#3b82f6] transition-colors duration-200 pointer-events-auto">
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+
+            <div className="flex flex-col gap-3 pointer-events-auto">
+              <h4 className="text-[11px] font-bold text-[#3b82f6] tracking-widest uppercase font-mono mb-1">Contact</h4>
+              <p className="text-sm text-gray-500">josephdarimathee530@gmail.com</p>
+              <p className="text-sm text-gray-500">Brazzaville, Congo</p>
+              
+              <Link href="/contact" className="mt-2 inline-flex items-center px-4 py-2 rounded-lg bg-[#3b82f6] text-black font-bold text-xs hover:bg-[#2563eb] transition-all duration-300 w-fit z-50 pointer-events-auto">
+                
+                Me contacter →
+              
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        {/* Divider */}
+        <div className="h-px w-full bg-gradient-to-r from-transparent via-[#3b82f620] to-transparent mb-8" />
+
+        {/* Bottom row */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-xs text-gray-600 font-mono">
+            © 2025 WebNova. Tous droits réservés.
+          </p>
+          <p className="text-xs text-gray-600">
+            Conçu & développé avec{" "}
+            <span className="text-[#3b82f6] font-semibold">Joseph Darimathee</span>
+          </p>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;

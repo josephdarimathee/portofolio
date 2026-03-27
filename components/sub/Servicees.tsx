@@ -2,144 +2,122 @@
 
 import Link from "next/link";
 import React from "react";
-import { motion } from "framer-motion";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+
+
+import { faGlobe, faMobile, faWrench, faChartLine } from '@fortawesome/free-solid-svg-icons';
+
+const Services = [
+  {
+    titre: "Web Development",
+    description: "Création de sites web modernes, performants et responsives adaptés à vos besoins professionnels.",
+    icon: faGlobe,
+    tags: ["Next.js", "React", "Node.js"],
+  },
+  {
+    titre: "Mobile Apps",
+    description: "Conception et développement d'applications mobiles intuitives et performantes pour Android et iOS.",
+    icon: faMobile,
+    tags: ["React Native", "Flutter", "Firebase"],
+  },
+  {
+    titre: "Dedicated Web Support",
+    description: "Support technique continu, maintenance et optimisation de vos applications web existantes.",
+    icon: faWrench,
+    tags: ["Maintenance", "Optimisation", "Support"],
+  },
+  {
+    titre: "Consultation & Marketing",
+    description: "Conseils stratégiques, audit technique et accompagnement pour votre transformation digitale.",
+    icon: faChartLine,
+    tags: ["SEO", "Audit", "Stratégie"],
+  },
+];
+
 const Service: React.FC = () => {
+ 
+  return (
+    <div
+      className="relative w-full bg-[#090d1a] overflow-hidden"
+    >
+      {/* Fond décoratif */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[60vw] h-[40vh] rounded-full bg-[#3b82f6] opacity-[0.03] blur-[120px] pointer-events-none" />
 
-    return (
-        <motion.div
-            initial="hidden"
-            animate="visible"
-            className="flex   z-[20]  "
-        >
-            <section className="w-full max-w-5xl mx-auto py-12 px-4">
-                <h2 className="text-3xl font-bold text-center mb-10 text-[#7042f8]">Mes Services</h2>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-                    {Services.map((Service, idx) => (
-                        <div key={idx} className="flex flex-col items-center bg-[#231942]/80 rounded-xl p-6 shadow-lg border border-[#7042f8]/20 hover:scale-105 transition-transform duration-200">
-                            <div className="text-5xl mb-4">{Service.icon}</div>
-                            <h3 className="text-xl font-semibold mb-2 text-[#00e0ff] text-center">{Service.titre}</h3>
-                            <p className="text-gray-200 text-center text-sm">{Service.description}</p>
-                        </div>
-                    ))}
-                </div>
-                <div className="flex justify-center">
-                    <Link href="/service">
-                        <button className="px-6 py-2 rounded bg-[#00e0ff] hover:bg-[#7042f8] text-white font-semibold transition focus:outline-none focus:ring-2 focus:ring-[#00e0ff] focus:ring-offset-2">
-                            Voir plus
+      <section className="relative z-10 w-full max-w-6xl mx-auto py-24 px-4">
 
-                        </button>
-                    </Link>
-                </div>
-            </section>
-        </motion.div>
-    );
+        {/* Header */}
+        <div className="flex flex-col items-center mb-16 text-center">
+          <div className="inline-flex items-center gap-2 py-1.5 px-4 rounded-full border border-[#3b82f640] bg-[#3b82f610] mb-4">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#3b82f6]" />
+            <span className="text-[11px] font-bold text-[#3b82f6] tracking-widest uppercase font-mono">
+              What I Do
+            </span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-4">
+            Mes{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3b82f6] to-[#2563eb]">
+              Services
+            </span>
+          </h2>
+          <p className="text-gray-500 text-sm max-w-md leading-relaxed">
+            Des solutions digitales sur mesure pour propulser votre projet vers le succès.
+          </p>
+        </div>
+
+        {/* Cards grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+          {Services.map((service, idx) => (
+            <div
+              key={idx}
+              className="group relative flex flex-col bg-[#0d1220] rounded-xl p-6 border border-[#1a2040] hover:border-[#3b82f640] transition-all duration-300 cursor-pointer overflow-hidden"
+            >
+              {/* Numéro de fond */}
+              <span className="absolute top-4 right-5 text-6xl font-black text-[#3b82f6] opacity-[0.04] font-mono select-none">
+                0{idx + 1}
+              </span>
+
+              {/* Icon */}
+              <div className="w-14 h-14 flex items-center justify-center rounded-xl bg-[#3b82f610] border border-[#3b82f625] mb-4 group-hover:bg-[#3b82f620] transition-colors duration-300 text-[#3b82f6]">
+                <FontAwesomeIcon icon={service.icon} style={{width: '1.75rem', height: '1.75rem'}} />
+              </div>
+
+              <h3 className="text-lg font-bold text-white mb-2 group-hover:text-[#3b82f6] transition-colors duration-300">
+                {service.titre}
+              </h3>
+              <p className="text-sm text-gray-400 leading-relaxed mb-4">
+                {service.description}
+              </p>
+
+              {/* Tags */}
+              <div className="flex flex-wrap gap-2 mt-auto">
+                {service.tags.map((tag, i) => (
+                  <span
+                    key={i}
+                    className="px-2 py-0.5 bg-[#3b82f608] border border-[#3b82f620] text-[#3b82f6] rounded text-[10px] font-bold font-mono"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              {/* Barre verte au bas */}
+              <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#3b82f6] to-[#2563eb] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            </div>
+          ))}
+        </div>
+
+        {/* CTA */}
+        <div className="relative z-50 pointer-events-auto flex justify-center">
+          <Link href="/service" className="pointer-events-auto">
+            <button className="px-8 py-3 rounded-lg bg-[#3b82f6] hover:bg-[#2563eb] text-black font-bold text-sm transition-all duration-300 shadow-lg shadow-[#3b82f640] pointer-events-auto">
+              Voir tous les services →
+            </button>
+          </Link>
+        </div>
+      </section>
+    </div>
+  );
 };
 
 export default Service;
-
-
-/**
-import React from "react";
-import Link from "next/link";
-const Servicee = () => {
-    return (
-        <section className="w-full max-w-5xl mx-auto py-12 px-4">
-            <h2 className="text-3xl font-bold text-center mb-10 text-[#7042f8]">Mes Services</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-                {Services.map((Service, idx) => (
-                    <div key={idx} className="flex flex-col items-center bg-[#231942]/80 rounded-xl p-6 shadow-lg border border-[#7042f8]/20 hover:scale-105 transition-transform duration-200">
-                        <div className="text-5xl mb-4">{Service.icon}</div>
-                        <h3 className="text-xl font-semibold mb-2 text-[#00e0ff] text-center">{Service.titre}</h3>
-                        <p className="text-gray-200 text-center text-sm">{Service.description}</p>
-                    </div>
-                ))}
-            </div>
-            <div className="flex justify-center">
-                <Link href="/about">
-                    <button className="px-6 py-2 rounded bg-[#00e0ff] hover:bg-[#7042f8] text-white font-semibold transition focus:outline-none focus:ring-2 focus:ring-[#00e0ff] focus:ring-offset-2">
-                        Voir plus
-
-                    </button>
-                </Link>
-            </div>
-        </section>
-    );
-};
-
-export default Servicee;
-
-
-
-"use client"
-
-import Image from "next/image";
-import Link from "next/link";
-import { motion } from "framer-motion";
-export default function AboutPage() {
-    return (
-
-        <motion.div
-            initial="hidden"
-            animate="visible"
-            className="flex   z-[20]  "
-        >
-            <main className="min-h-screen flex flex-col items-center justify-center py-16 px-4 bg-[#18122b] text-gray-200">
-               
-                <h1 className="text-4xl font-bold mb-6 text-[#7042f8] text-center">À propos de moi</h1>
-                <div className="flex flex-col md:flex-row items-center gap-10 max-w-4xl w-full bg-[#231942]/60 rounded-2xl p-8 shadow-lg">
-                    <div className="flex-shrink-0">
-                        <Image
-                            src="/PHprofil.jpg"
-                            alt="Photo de profil"
-                            width={180}
-                            height={180}
-                            className="rounded-full border-4 border-[#7042f8] shadow-xl object-cover"
-                            priority
-                        />
-                    </div>
-                    <div className="flex-1 flex flex-col gap-4">
-                        <h2 className="text-2xl font-semibold text-[#a076f8]">Joseph Darimathee</h2>
-                        <p>
-                            Passionné par le développement web, la programmation et la création de jeux vidéo, je suis un développeur fullstack avec une forte appétence pour l’innovation et l’apprentissage continu. J’aime concevoir des interfaces modernes, dynamiques et accessibles, tout en explorant les dernières technologies.
-                        </p>
-                        <ul className="list-disc pl-5 space-y-1">
-                            <li><span className="font-semibold text-[#00e0ff]">Compétences principales :</span> React, Next.js, TypeScript, Node.js, Python, C#, Tailwind CSS, MongoDB, MySQL, Unity, Godot, Game Design</li>
-                            <li><span className="font-semibold text-[#00e0ff]">Langues :</span> Français (natif), Anglais (courant)</li>
-                            <li><span className="font-semibold text-[#00e0ff]">Qualités :</span> Créatif, rigoureux, autonome, esprit d’équipe</li>
-                            <li><span className="font-semibold text-[#00e0ff]">Centres d’intérêt :</span> Jeux vidéo, IA, design, musique, sport</li>
-                        </ul>
-                        <div className="mt-4 flex flex-wrap gap-4">
-                            <Link rel="stylesheet" href="/contact" className="px-4 py-2 rounded bg-[#7042f8] hover:bg-[#a076f8] text-white font-semibold transition">Me contacter</Link>
-
-                            <Link href="../cv" className="px-4 py-2 rounded bg-[#00e0ff] hover:bg-[#00bfff] text-white font-semibold transition focus:outline-none focus:ring-2 focus:ring-[#00e0ff] focus:ring-offset-2">
-                                Voir mon CV
-                            </Link>
-                        </div>
-                    </div>
-                </div>
-            </main>
-        </motion.div>
-    );
-}
-
- */
-
-
-
-const Services = [
-    {
-        titre: "Développement Web",
-        description: "Création de sites web modernes, performants et responsives adaptés à vos besoins professionnels.",
-        icon: "🌐"
-    },
-    {
-        titre: "Applications Mobiles",
-        description: "Conception et développement d'applications mobiles intuitives et performantes pour Android et iOS.",
-        icon: "📱"
-    },
-    {
-        titre: "Conseil & Formation",
-        description: "Accompagnement, audit technique, et formation sur les technologies web et mobiles pour vos équipes.",
-        icon: "🎓"
-    }
-];
