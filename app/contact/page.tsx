@@ -65,8 +65,8 @@ const contactInfos = [
   {
     icon: faGlobe,
     label: "Portfolio",
-    value: "joseph-dev.vercel.app",
-    href: "https://joseph-dev.vercel.app",
+    value: "ombessa-joseph-darimathee.vercel.app",
+    href: "https://ombessa-joseph-darimathee.vercel.app",
     desc: "Mes réalisations",
   },
 ];
