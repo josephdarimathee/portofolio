@@ -6,7 +6,13 @@ import Link from "next/link";
 import gsap from "gsap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faPhone, faMapPin, faPaperPlane, faCheckCircle, faArrowLeft, faGlobe, faClock } from '@fortawesome/free-solid-svg-icons';
+import type { Metadata } from 'next'
 
+export const metadata: Metadata = {
+  alternates: {
+    canonical: '/service',
+  },
+}
 /* ── Variants ─────────────────────────────────────────── */
 const commonTransition = (delay = 0) => ({
   duration: 0.7,

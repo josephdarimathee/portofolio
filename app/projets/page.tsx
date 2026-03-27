@@ -1,6 +1,12 @@
 import React from "react";
 import Projects from "@/components/sub/projets";
+import type { Metadata } from 'next'
 
+export const metadata: Metadata = {
+  alternates: {
+    canonical: '/projets',
+  },
+}
 
 const Service = () => {
     return (

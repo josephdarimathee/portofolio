@@ -6,7 +6,13 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGlobe, faCartShopping, faGear, faPen, faRocket } from '@fortawesome/free-solid-svg-icons';
+import type { Metadata } from 'next'
 
+export const metadata: Metadata = {
+  alternates: {
+    canonical: '/service',
+  },
+}
 const services = [
   {
     id: 1,

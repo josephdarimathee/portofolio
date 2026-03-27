@@ -16,6 +16,10 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Space Portfolio",
   description: "This is my portfolio",
+  metadataBase: new URL('https://ombessa-joseph-darimathee.vercel.app'),
+  alternates: {
+    canonical: '/',
+  },
 };
 
 export default function RootLayout({
