@@ -82,7 +82,7 @@ const WorkedLearnDialog: React.FC = () => {
                                                 <h2 className="text-lg font-black text-white leading-tight">
                                                     Découvrez{' '}
                                                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3b82f6] to-[#60a5fa]">
-                                                        WorkedLearn
+                                                        ServiceExpress
                                                     </span>
                                                 </h2>
                                             </div>
