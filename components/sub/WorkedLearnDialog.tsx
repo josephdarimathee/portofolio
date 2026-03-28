@@ -110,7 +110,7 @@ const WorkedLearnDialog: React.FC = () => {
                                     {/* URL live */}
                                     <div className="flex items-center gap-3 mb-6 p-3 rounded-xl bg-[#0a0f1e] border border-[#1e2a4a]">
                                         <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
-                                        <span className="text-xs text-gray-400 font-mono truncate">site-vitrine-jet.vercel.app</span>
+                                        <span className="text-xs text-gray-400 font-mono truncate">site-vitrine-txf1.vercel.app</span>
                                         <span className="ml-auto text-[10px] font-bold text-[#3b82f6] font-mono uppercase tracking-widest shrink-0">Live ↗</span>
                                     </div>
 
