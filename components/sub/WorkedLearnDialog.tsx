@@ -17,7 +17,7 @@ const WorkedLearnDialog: React.FC = () => {
     const handleClose = () => setIsOpen(false);
 
     const handleVisitSite = () => {
-        window.open('https://site-vitrine-jet.vercel.app/', '_blank');
+        window.open('https://site-vitrine-txf1.vercel.app/', '_blank');
         setIsOpen(false);
     };
 
